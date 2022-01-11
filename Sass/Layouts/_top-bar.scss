@@ -1,0 +1,15 @@
+.functions {
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-light-blue;
+  padding: 3rem;
+
+  &-left {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+  }
+
+  &-right {
+  }
+}

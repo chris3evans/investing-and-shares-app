@@ -1,0 +1,15 @@
+{
+  "name": "specterross",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass Sass/main.scss CSS/styles.css -w"
+  },
+  "author": "Chris Evans",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^6.0.1"
+  }
+}

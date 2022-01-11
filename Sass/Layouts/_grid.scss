@@ -1,0 +1,43 @@
+.row {
+  max-width: $grid-width;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+
+  background-color: white;
+}
+
+.col-1-of-2 {
+  flex: 0 0 calc((100% - #{$gutter-horizontal}) / 2);
+  background-color: red;
+}
+
+.col-1-of-3 {
+  flex: 0 0 calc((100% - (2 * #{$gutter-horizontal})) / 3);
+  background-color: blue;
+}
+
+.col-2-of-3 {
+  flex: 0 0
+    calc(2 * ((100% - (2 * #{$gutter-horizontal})) / 3) + #{$gutter-horizontal});
+  background-color: green;
+}
+
+.col-1-of-4 {
+  flex: 0 0 calc((100% - (3 * #{$gutter-horizontal})) / 4);
+  background-color: yellow;
+}
+
+.col-2-of-4 {
+  flex: 0 0
+    calc(2 * ((100% - (3 * #{$gutter-horizontal})) / 4) + #{$gutter-horizontal});
+}
+
+.col-3-of-4 {
+  flex: 0 0
+    calc(
+      3 * ((100% - (3 * #{$gutter-horizontal})) / 4) +
+        (2 * #{$gutter-horizontal})
+    );
+}

@@ -1,0 +1,36 @@
+.btn {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  padding: 2rem 3rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  border: none;
+  letter-spacing: 0.2rem;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0rem 1rem 2rem rgba(black, 0.5);
+  }
+  &:active {
+    transform: translateY(0rem);
+    box-shadow: none;
+  }
+
+  &-light {
+    background-color: $color-very-light-blue;
+    color: $color-light-blue;
+
+    &:hover {
+      color: $color-dark-blue;
+    }
+    &:active {
+      color: $color-light-blue;
+    }
+  }
+
+  &-dark {
+    background-color: $color-dark-blue;
+    color: white;
+  }
+}
