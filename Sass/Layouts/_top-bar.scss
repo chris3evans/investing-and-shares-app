@@ -3,6 +3,7 @@
   justify-content: space-between;
   background-color: $color-light-blue;
   padding: 3rem;
+  grid-row: 1 / 2;
 
   &-left {
     display: grid;

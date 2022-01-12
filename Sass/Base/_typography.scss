@@ -6,6 +6,7 @@
     font-size: 4rem;
     font-weight: 300;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
   }
 
   &-3 {
@@ -13,4 +14,19 @@
     font-weight: 300;
     font-family: Arial, Helvetica, sans-serif;
   }
+
+  &-4 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: rgba($color-dark-blue, 0.6);
+  }
+}
+
+.main-text {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  color: $color-dark-blue;
 }

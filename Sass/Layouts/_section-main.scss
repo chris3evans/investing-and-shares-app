@@ -1,0 +1,5 @@
+.section-main {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: repeat(8, 1fr);
+}

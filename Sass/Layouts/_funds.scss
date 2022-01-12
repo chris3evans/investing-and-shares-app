@@ -1,0 +1,28 @@
+.funds {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-grey;
+
+  grid-row: 8 / 9;
+
+  &-item {
+    border: solid 0.1rem rgba(black, 0.1);
+    padding: 2rem;
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    grid-row-gap: 1rem;
+  }
+
+  &-available {
+  }
+
+  &-invested {
+  }
+
+  &-change {
+  }
+
+  &-value {
+  }
+}

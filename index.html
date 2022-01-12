@@ -14,64 +14,134 @@
   </head>
 
   <body>
-    <!--TOP BAR-->
-    <div class="functions">
-      <div class="functions-left">
-        <button class="btn btn-light">Withdraw</button>
+    <section class="section-main">
+      <!--TOP BAR-->
+      <div class="functions">
+        <div class="functions-left">
+          <button class="btn btn-light">Withdraw</button>
 
-        <button class="btn btn-dark">Deposit</button>
+          <button class="btn btn-dark">Deposit</button>
+        </div>
+
+        <div class="functions-right">
+          <button class="btn btn-dark">View Portfolio</button>
+        </div>
       </div>
 
-      <div class="functions-right">
-        <button class="btn btn-dark">View Portfolio</button>
-      </div>
-    </div>
+      <!--VIEWING WINDOW-->
+      <div class="view">
+        <!--SHARES ARE LISTED INSIDE HERE-->
+        <div class="view-container">
+          <!--SHARE VIEW-->
+          <div class="share">
+            <div class="share-info">
+              <div class="share-logo">*Apple Logo*</div>
 
-    <!--VIEWING WINDOW-->
-    <div class="view">
-      <!--SHARES ARE LISTED INSIDE HERE-->
-      <div class="view-container">
-        <!--SHARE VIEW-->
-        <div class="share">
-          <div class="share-info">
-            <div class="share-logo">*Apple Logo*</div>
+              <div class="share-name">
+                <h3 class="heading-3">Apple</h3>
+              </div>
 
-            <div class="share-name">
-              <h3 class="heading-3">Apple</h3>
+              <div class="share-ticker">
+                <h3 class="heading-3">APPL</h3>
+              </div>
+
+              <div class="share-price">
+                <h3 class="heading-3">$200</h3>
+              </div>
             </div>
 
-            <div class="share-ticker">
-              <h3 class="heading-3">APPL</h3>
+            <div class="share-view">
+              <button class="btn btn-dark">View</button>
             </div>
-
-            <div class="share-price">
-              <h3 class="heading-3">$200</h3>
-            </div>
-          </div>
-
-          <div class="share-view">
-            <button class="btn btn-dark">View</button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!--FUNDS-->
-    <div class="funds">
-      <div class="funds-available">
-        <h2 class="heading-2">*FUNDS AVAILABLE*</h2>
+      <!--FUNDS-->
+      <div class="funds">
+        <div class="funds-item funds-available">
+          <h4 class="heading-4">Funds available</h4>
+          <h2 class="heading-2">*FUNDS AVAILABLE*</h2>
+        </div>
+
+        <div class="funds-item funds-invested">
+          <h4 class="heading-4">Funds invested</h4>
+          <h2 class="heading-2">*FUNDS INVESTED*</h2>
+        </div>
+
+        <div class="funds-item funds-change">
+          <h4 class="heading-4">Net profit / loss</h4>
+          <h2 class="heading-2">*NET GAIN / LOSS*</h2>
+        </div>
+
+        <div class="funds-item funds-value">
+          <h4 class="heading-4">Current value</h4>
+          <h2 class="heading-2">*TOTAL VALUE*</h2>
+        </div>
+      </div>
+    </section>
+
+    <!--SHARE INFO POP UP-->
+    <div class="details">
+      <div class="details-close">
+        <svg class="details-close-icon">
+          <use xlink:href="CSS/close-sprite.svg#icon-cross"></use>
+        </svg>
       </div>
 
-      <div class="funds-invested">
-        <h2 class="heading-2">*FUNDS INVESTED*</h2>
+      <div class="details-container">
+        <div class="details-logo">
+          <img class="details-logo-file" src="External Content/AppleLogo.png" />
+        </div>
+
+        <div class="details-info details-name">
+          <p class="main-text">Name:</p>
+          <p class="main-text">Apple</p>
+        </div>
+
+        <div class="details-info details-ticker">
+          <p class="main-text">Ticker:</p>
+          <p class="main-text">APPL</p>
+        </div>
+
+        <div class="details-info details-price">
+          <p class="main-text">Share Price:</p>
+          <p class="main-text">$200</p>
+        </div>
+
+        <div class="details-info details-dividend">
+          <p class="main-text">Dividend:</p>
+          <p class="main-text">$0.88</p>
+        </div>
+
+        <div class="details-info details-dividend-yield">
+          <p class="main-text">Dividend Yield:</p>
+          <p class="main-text">0.44%</p>
+        </div>
+
+        <div class="details-info details-pe">
+          <p class="main-text">P/E Ratio:</p>
+          <p class="main-text">31.22</p>
+        </div>
+
+        <div class="details-info details-marketcap">
+          <p class="main-text">Market Cap:</p>
+          <p class="main-text">$2.86T</p>
+        </div>
+
+        <div class="details-info details-52low">
+          <p class="main-text">52 Week-Low:</p>
+          <p class="main-text">$116.22</p>
+        </div>
+
+        <div class="details-info details-52high">
+          <p class="main-text">52 Week-High:</p>
+          <p class="main-text">$182.71</p>
+        </div>
       </div>
 
-      <div class="funds-change">
-        <h2 class="heading-2">*NET GAIN / LOSS*</h2>
-      </div>
-
-      <div class="funds-value">
-        <h2 class="heading-2">*TOTAL VALUE*</h2>
+      <div class="details-btn">
+        <button class="btn btn-dark">Buy shares</button>
       </div>
     </div>
   </body>
