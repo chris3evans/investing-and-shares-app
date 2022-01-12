@@ -1,11 +1,15 @@
 .details {
   display: grid;
-  grid-template-rows: repeat(2, min-content);
-  width: 80%;
-  margin: 0 auto;
+  grid-template-rows: repeat(3, min-content);
+  width: 50%;
+  margin-top: 2.5%;
+  margin-left: 25%;
+  position: absolute;
 
   background-color: $color-very-light-blue;
   border-radius: 1rem;
+  box-shadow: 0rem 1rem 2rem rgba(black, 0.5);
+  transition: all 0.4s;
 
   &-close {
     display: flex;
@@ -26,6 +30,13 @@
     grid-template-rows: repeat(6, 1fr);
     grid-gap: 3rem;
     padding: 0rem 2rem;
+  }
+
+  &-btn {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
   }
 
   &-logo {
@@ -95,12 +106,5 @@
   &-52high {
     grid-column: 3 / 5;
     grid-row: 6 / 7;
-  }
-
-  &-btn {
-    margin-top: 3rem;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 2rem;
   }
 }
