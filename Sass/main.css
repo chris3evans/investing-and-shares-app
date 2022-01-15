@@ -76,6 +76,16 @@ body {
   color: #050553;
 }
 
+.overlay {
+  background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+}
+
 .btn {
   font-size: 2.5rem;
   text-transform: uppercase;
@@ -84,7 +94,7 @@ body {
   border-radius: 1rem;
   border: none;
   letter-spacing: 0.2rem;
-  z-index: 1;
+  z-index: 2;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }

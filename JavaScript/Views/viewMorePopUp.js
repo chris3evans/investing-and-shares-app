@@ -1,4 +1,6 @@
 const stockPopUp = document.querySelector(".popup");
+const overlay = document.querySelector(".overlay");
+
 const popUpName = document.querySelector("#stockName");
 const popUpTicker = document.querySelector("#tickerSymbol");
 const popUpPrice = document.querySelector("#sharePrice");
@@ -13,8 +15,10 @@ export const renderStockPopUp = function (targetShareID, sharesArray) {
   // Reveal or hide pop up
   if (stockPopUp.classList.contains("hidden")) {
     stockPopUp.classList.remove("hidden");
+    overlay.classList.remove("hidden");
   } else {
     stockPopUp.classList.add("hidden");
+    overlay.classList.remove("hidden");
   }
 
   // Finding the correct data and rendering it
