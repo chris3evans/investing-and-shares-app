@@ -13,9 +13,9 @@
     <script type="module" src="JavaScript/controller.js"></script>
   </head>
 
-  <body>
+  <body class="body">
     <!--SHARE INFO POP UP-->
-    <div class="hidden">
+    <div class="popup hidden">
       <div class="details fade-out">
         <div class="details-close">
           <svg class="details-close-icon">
@@ -33,47 +33,47 @@
 
           <div class="details-info details-name">
             <p class="main-text">Name:</p>
-            <p class="main-text">Apple</p>
+            <p class="main-text" id="stockName">_</p>
           </div>
 
           <div class="details-info details-ticker">
             <p class="main-text">Ticker:</p>
-            <p class="main-text">APPL</p>
+            <p class="main-text" id="tickerSymbol">APPL</p>
           </div>
 
           <div class="details-info details-price">
             <p class="main-text">Share Price:</p>
-            <p class="main-text">$200</p>
+            <p class="main-text" id="sharePrice">$172</p>
           </div>
 
-          <div class="details-info details-dividend">
-            <p class="main-text">Dividend:</p>
-            <p class="main-text">$0.88</p>
+          <div class="details-info details-day-low">
+            <p class="main-text">Day Low:</p>
+            <p class="main-text" id="dayLow">$171.20</p>
           </div>
 
-          <div class="details-info details-dividend-yield">
-            <p class="main-text">Dividend Yield:</p>
-            <p class="main-text">0.44%</p>
+          <div class="details-info details-day-high">
+            <p class="main-text">Day High:</p>
+            <p class="main-text" id="dayHigh">$177.55</p>
           </div>
 
-          <div class="details-info details-pe">
-            <p class="main-text">P/E Ratio:</p>
-            <p class="main-text">31.22</p>
+          <div class="details-info details-market">
+            <p class="main-text">Market:</p>
+            <p class="main-text" id="market">NASDAQ</p>
           </div>
 
           <div class="details-info details-marketcap">
             <p class="main-text">Market Cap:</p>
-            <p class="main-text">$2.86T</p>
+            <p class="main-text" id="marketCap">$2.86T</p>
           </div>
 
           <div class="details-info details-52low">
             <p class="main-text">52 Week-Low:</p>
-            <p class="main-text">$116.22</p>
+            <p class="main-text" id="yearLow">$116.22</p>
           </div>
 
           <div class="details-info details-52high">
             <p class="main-text">52 Week-High:</p>
-            <p class="main-text">$182.71</p>
+            <p class="main-text" id="yearHigh">$182.71</p>
           </div>
         </div>
 
@@ -87,13 +87,13 @@
       <!--TOP BAR-->
       <div class="functions">
         <div class="functions-left">
-          <button class="btn btn-light">Withdraw</button>
+          <button class="btn btn-light" id="btnWithdraw">Withdraw</button>
 
-          <button class="btn btn-dark">Deposit</button>
+          <button class="btn btn-dark" id="btnDeposit">Deposit</button>
         </div>
 
         <div class="functions-right">
-          <button class="btn btn-dark">View Portfolio</button>
+          <button class="btn btn-dark" id="btnPortfolio">View Portfolio</button>
         </div>
       </div>
 
@@ -102,9 +102,8 @@
         <!--SHARES ARE LISTED INSIDE HERE-->
         <div class="view-container">
           <!--SHARE VIEW-->
-          <div class="share">
+          <!--<div class="share">
             <div class="share-info">
-              <div class="share-logo">*Apple Logo*</div>
 
               <div class="share-name">
                 <h3 class="heading-3">Apple</h3>
@@ -122,7 +121,7 @@
             <div class="share-view">
               <button class="btn btn-dark">View</button>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
 
