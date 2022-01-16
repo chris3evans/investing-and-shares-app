@@ -171,4 +171,29 @@ export const testData = [
   },
 ];
 
-// 452,150,000,000
+// Stores data at the account level
+class Account {
+  constructor(name, available) {
+    this.name = name;
+    this.portfolio = [];
+    this.available = available;
+    this.currency = ["USD", "$"];
+    this.movementHistory = [];
+    this.tradeHistory = [];
+  }
+}
+
+const account1 = new Account("Chris Evans", 10000);
+
+// The array elments for the "Account" class' portfolio array
+class Investment {
+  constructor(shareName, numShares, portPercentage, gainLoss) {
+    this.shareName = shareName;
+    this.numShares = numShares;
+    this.portPercentage = portPercentage;
+    this.gainLoss = gainLoss;
+    this.trades = [];
+  }
+}
+
+const investment1 = new Investment("Apple", 500, 0.25, 0.53);

@@ -18,14 +18,23 @@
     <div class="overlay hidden"></div>
     <!--SHARE INFO POP UP-->
     <div class="popup hidden">
-      <div class="details fade-out">
-        <div class="details-close">
-          <svg class="details-close-icon">
-            <use xlink:href="CSS/close-sprite.svg#icon-cross"></use>
-          </svg>
-        </div>
+      <div class="details">
+        <div class="details-navigation">
+          <div class="details-back">
+            <svg class="details-back-icon">
+              <use
+                xlink:href="CSS/arrow-left-sprite.svg#icon-arrow-long-left"
+              ></use>
+            </svg>
+          </div>
 
-        <div class="details-container">
+          <div class="details-close">
+            <svg class="details-close-icon">
+              <use xlink:href="CSS/close-sprite.svg#icon-cross"></use>
+            </svg>
+          </div>
+        </div>
+        <!--<div class="details-container">
           <div class="details-logo">
             <img
               class="details-logo-file"
@@ -77,10 +86,51 @@
             <p class="main-text">52 Week-High:</p>
             <p class="main-text" id="yearHigh">$182.71</p>
           </div>
+        </div>-->
+
+        <!---///////////////////////////////////////////////////////-->
+
+        <!--<div class="buy">
+        <div class="buy-navigation">
+          <svg class="buy-back-icon">
+            <use
+              xlink:href="CSS/arrow-left-sprite.svg#icon-arrow-long-left"
+            ></use>
+          </svg>
+
+          <svg class="buy-close-icon">
+            <use xlink:href="CSS/close-sprite.svg#icon-cross"></use>
+          </svg>
         </div>
 
-        <div class="details-btn">
-          <button class="btn btn-dark">Buy shares</button>
+        <div class="buy-container">
+          <div class="buy-selector">
+            <div class="buy-units units-selected">
+              <p class="main-text cursor-pointer center-text">Units</p>
+            </div>
+            <div class="buy-funds">
+              <p class="main-text cursor-pointer center-text">Funds</p>
+            </div>
+
+            <div class="buy-amount">
+              <button class="square-btn" id="buy-less">-</button>
+              <input type="number" class="buy-input" />
+              <button class="square-btn" id="buy-more">+</button>
+            </div>
+          </div>
+
+          <div class="buy-summary">
+            <p class="main-text center-text">Buy X TSLA for $X</p>
+          </div>
+
+          <div class="details-btn">
+            <button type="submit" class="btn btn-dark">Purchase</button>
+          </div>
+        </div>
+      </div>-->
+
+        <div class="details-btn" id="btn-buy">
+          <button class="btn btn-dark" id="btn-buy-text">Buy shares</button>
         </div>
       </div>
     </div>
