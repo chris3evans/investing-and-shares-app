@@ -198,36 +198,48 @@ export const account1 = new Account("Chris Evans", 10000, 200, 0.25, 12750);
 class Investment {
   constructor(
     investmentShareName,
+    investmentSharePrice,
     investmentTicker,
     totalNumShares,
     portPercentage,
-    investmentGainLoss,
-    investmentValue
+    investmentInitValue,
+    investmentCurValue,
+    investmentGainLoss
   ) {
     this.investmentShareName = investmentShareName;
+    this.investmentSharePrice = investmentSharePrice;
     this.investmentTicker = investmentTicker;
     this.totalNummShares = totalNumShares;
     this.portPercentage = portPercentage;
+    this.investmentInitValue = investmentInitValue;
+    this.investmentCurValue = investmentCurValue;
     this.investmentGainLoss = investmentGainLoss;
-    this.investmentValue = investmentValue;
-    this.trades = [];
   }
 }
-
-const investment1 = new Investment("Apple", "AAPL", 500, 0.25, 0.53, 87500);
-console.log(investment1);
 
 // The array elements for the "Investments" class' trades array
 class Trade {
-  constructor(shareName, sharePrice, numShares, tradeGainLoss) {
+  constructor(
+    shareName,
+    sharePrice,
+    numShares,
+    tradeValueInit,
+    tradeValueCur,
+    tradeGainLoss
+  ) {
     this.shareName = shareName;
     this.sharePrice = sharePrice;
     this.numShares = numShares;
+    this.tradeValueInit = tradeValueInit;
+    this.tradeValueCur = tradeValueCur;
     this.tradeGainLoss = tradeGainLoss;
   }
-}
 
-const trade1 = new Trade("Apple", 175, 25, 1.56);
+  calcInitTradeValue() {
+    const initTradeValue = this.sharePrice * this.numShares;
+    return initTradeValue;
+  }
+}
 
 // PUCHASE POP UP LOGIC
 //
@@ -279,16 +291,16 @@ export const testFundsValue = calcSharesToBeBought(check, 2250, 250);
 
 // Check for existing investment
 export const existingInvestment = function (
-  accountPortfolioArray,
+  accountPortfolio,
   targetStockTicker
 ) {
   // Investment does not exist
-  if (accountPortfolioArray.length === 0) return false;
+  if (accountPortfolio.portfolio.length === 0) return false;
 
   // Investment does exist
   if (
-    accountPortfolioArray.find(function (investment) {
-      return investment.ticker === targetStockTicker;
+    accountPortfolio.portfolio.find(function (investment) {
+      return investment[0] === targetStockTicker;
     })
   ) {
     return true;
@@ -299,23 +311,28 @@ export const existingInvestment = function (
 
 // Create new investment
 export const createInvestment = function (
-  targetAccount,
+  //targetAccount,
   shareName,
+  sharePrice,
   shareTicker,
   numShares,
   portPercentage,
-  gainLoss,
-  value
+  initValue,
+  curValue,
+  gainLoss
 ) {
   const newInvestment = new Investment(
     shareName,
+    sharePrice,
     shareTicker,
     numShares,
     portPercentage,
-    gainLoss,
-    value
+    initValue,
+    curValue,
+    gainLoss
   );
-  targetAccount.portfolio.push(newInvestment);
+  return newInvestment;
+  //targetAccount.portfolio.push(newInvestment);
 };
 
 // Create new trade
@@ -324,12 +341,21 @@ export const createTrade = function (
   shareName,
   sharePrice,
   numShares,
+  initialValue,
+  currentValue,
   gainLoss
 ) {
   /*
   shareName, sharePrice, numShares, tradeGainLoss
   */
-  const newTrade = new Trade(shareName, sharePrice, numShares, gainLoss);
+  const newTrade = new Trade(
+    shareName,
+    sharePrice,
+    numShares,
+    initialValue,
+    currentValue,
+    gainLoss
+  );
   return newTrade;
   //targetInvestment.push(newTrade);
 };

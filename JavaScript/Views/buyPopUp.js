@@ -25,7 +25,7 @@ export const renderPurchasePopUp = function (stockID, stockArray) {
           </div>
 
           <div class="buy-summary">
-            <p class="main-text center-text">Buy X ${targetStock.name} for $X</p>
+            <p class="main-text center-text summary-text"></p>
           </div>
         </div>
 
@@ -46,4 +46,14 @@ export const clearPurchase = function () {
     purchaseContainer.remove();
     purchaseBtn.remove();
   }
+};
+
+export const renderPurchaseSummary = function (quantity, stock, amount) {
+  const purchaseSummary = document.querySelector(".summary-text");
+
+  if (quantity === 0) {
+    purchaseSummary.textContent = "";
+  }
+
+  purchaseSummary.textContent = `Buy ${quantity} ${stock} for $${amount}`;
 };

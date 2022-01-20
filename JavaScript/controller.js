@@ -32,7 +32,9 @@ const openViewMorePopUp = function () {
   document.addEventListener("click", function (e) {
     // View more pop up listeners
 
-    if (e.target.classList.contains("btn")) {
+    if (!e.target.classList.contains("btn")) {
+      return;
+    } else {
       targetShareID = e.target.closest(".share").id;
 
       //viewMorePopUp.renderStockPopUp(targetShareID, mockData);
@@ -146,8 +148,6 @@ backBtn.addEventListener("click", function () {
   viewMorePopUp.renderStockPopUp(targetShareID, mockData);
 });
 
-console.log(modelObject.account1);
-
 // Make a purchase of shares
 const purchaseShares = function () {
   document.addEventListener("click", function (e) {
@@ -176,71 +176,69 @@ const purchaseShares = function () {
 
         // If there is enough:
         if (result === "approved") {
+          const targetShareName = mockData.find(function (share) {
+            return share.ticker === targetShareID;
+          }).name;
           // If investment does not exist
           if (
-            !modelObject.existingInvestment(
-              modelObject.account1.portfolio,
-              targetShareID
-            )
+            !modelObject.existingInvestment(modelObject.account1, targetShareID)
           ) {
+            // Create a new array for this investment
+            const newInvestmentArray = new Array(`${targetShareID}`);
+
             // Create new investment object
-            const targetShareName = mockData.find(function (share) {
-              return share.ticker === targetShareID;
-            }).name;
             /*
-            targetAccount,
             shareName,
+            sharePrice,
             shareTicker,
             numShares,
             portPercentage,
+            initValue,
+            curValue,
             gainLoss,
-            value
             */
-            modelObject.createInvestment(
-              modelObject.account1,
+            const newInvestment = modelObject.createInvestment(
+              //modelObject.account1,
               targetShareName,
+              targetSharePrice,
               targetShareID,
               inputValue,
               100,
-              0.25,
-              2000
-            );
-            console.log(modelObject.account1);
-
-            // Create new trade object
-            /*
-            targetInvestment,
-            shareName,
-            sharePrice,
-            numShares,
-            gainLoss
-            */
-            const newTrade = modelObject.createTrade(
-              targetShareName,
-              targetSharePrice,
-              inputValue,
+              2000,
+              2200,
               0.25
             );
 
-            const targetPortfolio = modelObject.account1.portfolio.find(
-              function (investment) {
-                console.log(investment);
-                return investment.ticker === targetShareID;
-              }
-            ).trades;
-            console.log(targetPortfolio);
+            // Add first investment object to new investment array
+            newInvestmentArray.push(newInvestment);
 
-            targetPortfolio.push(newTrade);
+            // Push this new investment array to the account's portfolio array
+            modelObject.account1.portfolio.push(newInvestmentArray);
             console.log(modelObject.account1);
-            // Push trade to new investment
-          }
+          } else {
+            console.log("investment exists");
+            // Create new investment object
+            const existingInvestment = modelObject.createInvestment(
+              targetShareName,
+              targetSharePrice,
+              targetShareID,
+              inputValue,
+              100,
+              2000,
+              2200,
+              0.25
+            );
 
-          // If investment does exist
-          if (
-            modelObject.existingInvestment(modelObject.account1, targetShareID)
-          ) {
-            // Create new trade object
-            // Push trade to existing investment
+            // Find correct investment array
+            const targetInvestmentArray = modelObject.account1.portfolio.find(
+              function (investment) {
+                return investment[0] === targetShareID;
+              }
+            );
+
+            // Push investment object to existing investment array
+            targetInvestmentArray.push(existingInvestment);
+            console.log(modelObject.account1);
           }
         }
 
@@ -255,3 +253,30 @@ const purchaseShares = function () {
   });
 };
 purchaseShares();
+
+const updatePurchaseSummary = function () {
+  document.addEventListener("keydown", function (e) {
+    //const renderPurchaseSummary = function (quantity, stock, amount)
+    const buyContainer = document.querySelector(".buy-container");
+
+    if (buyContainer && e.key != "Backspace") {
+      let totalInput = 0;
+      const secondInput = e.key;
+      const firstInput = document.querySelector(".buy-input").value;
+
+      totalInput = +firstInput.concat(secondInput);
+
+      const price = mockData.find(function (share) {
+        return share.ticker === targetShareID;
+      }).price;
+      const totalAmount = price * totalInput;
+
+      viewBuyPopUp.renderPurchaseSummary(
+        totalInput,
+        targetShareID,
+        totalAmount
+      );
+    }
+  });
+};
+updatePurchaseSummary();
