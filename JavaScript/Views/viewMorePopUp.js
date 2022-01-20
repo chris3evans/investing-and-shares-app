@@ -99,11 +99,14 @@ export const renderStockPopUp = function (targetShareID, sharesArray) {
       <p class="main-text" id="yearHigh">$182.71</p>
     </div>
   </div>
+
+  <div class="details-btn btn-buy" id="btn-buy">
+          <button class="btn btn-dark btn-buy-text" id="btn-buy-text">Buy shares</button>
+  </div>
 `;
 
   backBtn.classList.add("hidden");
   navigation.insertAdjacentHTML("afterend", viewMoreHtml);
-  btnBuyText.textContent = "BUY SHARES";
   //popUp52Low.textContent === targetStock.52_week_low;
   //popUp52High.textContent === targetStock.52_week_high;*/
 };
@@ -113,8 +116,10 @@ export const renderStockPopUp = function (targetShareID, sharesArray) {
 
 export const clearViewMore = function () {
   const detailsContainer = document.querySelector(".details-container");
+  const buyBtn = document.querySelector(".btn-buy");
 
-  if (detailsContainer) {
+  if (detailsContainer && buyBtn) {
     detailsContainer.remove();
+    buyBtn.remove();
   }
 };

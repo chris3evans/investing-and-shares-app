@@ -173,27 +173,165 @@ export const testData = [
 
 // Stores data at the account level
 class Account {
-  constructor(name, available) {
-    this.name = name;
+  constructor(
+    accountName,
+    fundsAvailable,
+    fundsInvested,
+    netLossGain,
+    portValue
+  ) {
+    this.accountName = accountName;
     this.portfolio = [];
-    this.available = available;
+    this.fundsAvailable = fundsAvailable;
+    this.fundsInvested = fundsInvested;
+    this.netLossGain = netLossGain;
+    this.portValue = portValue;
     this.currency = ["USD", "$"];
     this.movementHistory = [];
     this.tradeHistory = [];
   }
 }
 
-const account1 = new Account("Chris Evans", 10000);
+export const account1 = new Account("Chris Evans", 10000, 200, 0.25, 12750);
 
 // The array elments for the "Account" class' portfolio array
 class Investment {
-  constructor(shareName, numShares, portPercentage, gainLoss) {
-    this.shareName = shareName;
-    this.numShares = numShares;
+  constructor(
+    investmentShareName,
+    investmentTicker,
+    totalNumShares,
+    portPercentage,
+    investmentGainLoss,
+    investmentValue
+  ) {
+    this.investmentShareName = investmentShareName;
+    this.investmentTicker = investmentTicker;
+    this.totalNummShares = totalNumShares;
     this.portPercentage = portPercentage;
-    this.gainLoss = gainLoss;
+    this.investmentGainLoss = investmentGainLoss;
+    this.investmentValue = investmentValue;
     this.trades = [];
   }
 }
 
-const investment1 = new Investment("Apple", 500, 0.25, 0.53);
+const investment1 = new Investment("Apple", "AAPL", 500, 0.25, 0.53, 87500);
+console.log(investment1);
+
+// The array elements for the "Investments" class' trades array
+class Trade {
+  constructor(shareName, sharePrice, numShares, tradeGainLoss) {
+    this.shareName = shareName;
+    this.sharePrice = sharePrice;
+    this.numShares = numShares;
+    this.tradeGainLoss = tradeGainLoss;
+  }
+}
+
+const trade1 = new Trade("Apple", 175, 25, 1.56);
+
+// PUCHASE POP UP LOGIC
+//
+
+// Function to check if there are enough funds to make purchase
+export const checkFunds = function (fundsAvailable, numShares, sharePrice) {
+  // Calculating amount needed to make purchase
+  const amountRequired = fundsAvailable - numShares * sharePrice;
+
+  // Confirming if purchase can or can't go ahead
+  const result = amountRequired >= 0 ? "approved" : "rejected";
+  return result;
+};
+
+const check = checkFunds(2500, 250, 9);
+
+// Function to workout funds used, when purchasing by units
+export const calcFundsToBeUsed = function (fundCheck, unitInput, sharePrice) {
+  if (fundCheck === "approved") {
+    const numFunds = unitInput * sharePrice;
+    console.log(numFunds);
+  } else {
+    console.log("Purchase rejected: not enough funds!");
+  }
+};
+export const testUnitsValue = calcFundsToBeUsed(check, 9, 250);
+
+// Function to workout units bought, when purchasing by funds
+export const calcSharesToBeBought = function (
+  fundCheck,
+  fundInput,
+  sharePrice
+) {
+  if (fundCheck === "approved") {
+    const numShares = fundInput / sharePrice;
+    console.log(numShares);
+  } else {
+    console.log("Purchase3 rejected: add more funds!");
+  }
+};
+export const testFundsValue = calcSharesToBeBought(check, 2250, 250);
+
+// Selecting to buy by units
+
+// Selecting to buy by funds
+
+// PURCHASE EVENT LOGIC
+//
+
+// Check for existing investment
+export const existingInvestment = function (
+  accountPortfolioArray,
+  targetStockTicker
+) {
+  // Investment does not exist
+  if (accountPortfolioArray.length === 0) return false;
+
+  // Investment does exist
+  if (
+    accountPortfolioArray.find(function (investment) {
+      return investment.ticker === targetStockTicker;
+    })
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// Create new investment
+export const createInvestment = function (
+  targetAccount,
+  shareName,
+  shareTicker,
+  numShares,
+  portPercentage,
+  gainLoss,
+  value
+) {
+  const newInvestment = new Investment(
+    shareName,
+    shareTicker,
+    numShares,
+    portPercentage,
+    gainLoss,
+    value
+  );
+  targetAccount.portfolio.push(newInvestment);
+};
+
+// Create new trade
+export const createTrade = function (
+  //targetInvestment,
+  shareName,
+  sharePrice,
+  numShares,
+  gainLoss
+) {
+  /*
+  shareName, sharePrice, numShares, tradeGainLoss
+  */
+  const newTrade = new Trade(shareName, sharePrice, numShares, gainLoss);
+  return newTrade;
+  //targetInvestment.push(newTrade);
+};
+
+// Push new trade to existing investment

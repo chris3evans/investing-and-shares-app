@@ -252,14 +252,18 @@ body {
   border: none;
 }
 
-.units-selected {
-  background-color: white;
-  border-top-left-radius: 1rem;
+.unit-selected {
+  background-color: white !important;
+  border-top-left-radius: 1rem !important;
+  -webkit-box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
+          box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
 }
 
-.funds-selected {
-  background-color: white;
-  border-top-right-radius: 1rem;
+.fund-selected {
+  background-color: white !important;
+  border-top-right-radius: 1rem !important;
+  -webkit-box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
+          box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
 }
 
 .fade-in {

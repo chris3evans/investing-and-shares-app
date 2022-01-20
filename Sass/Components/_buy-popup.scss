@@ -70,12 +70,14 @@
   }
 }
 
-.units-selected {
-  background-color: white;
-  border-top-left-radius: 1rem;
+.unit-selected {
+  background-color: white !important;
+  border-top-left-radius: 1rem !important;
+  box-shadow: 0rem 0.5rem 1rem rgba(black, 0.2) !important;
 }
 
-.funds-selected {
-  background-color: white;
-  border-top-right-radius: 1rem;
+.fund-selected {
+  background-color: white !important;
+  border-top-right-radius: 1rem !important;
+  box-shadow: 0rem 0.5rem 1rem rgba(black, 0.2) !important;
 }
