@@ -90,6 +90,11 @@ body {
   text-align: center !important;
 }
 
+.text-alert {
+  color: red !important;
+  font-style: bold !important;
+}
+
 .btn {
   font-size: 2.5rem;
   text-transform: uppercase;

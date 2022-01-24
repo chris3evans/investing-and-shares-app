@@ -90,8 +90,6 @@ const openPurchaseWindow = function () {
 
       // Replace it with share purchase UI
       viewBuyPopUp.renderPurchasePopUp(targetShareID, mockData);
-
-      console.log("hello");
     }
   });
 };
@@ -101,6 +99,7 @@ openPurchaseWindow();
 const renderPurchaseBtns = function () {
   document.addEventListener("click", function (e) {
     // Select units function
+
     const revealUnits = function () {
       const unitBackground = document.querySelector(".buy-units");
       const fundBackground = document.querySelector(".buy-funds");
@@ -141,6 +140,34 @@ const renderPurchaseBtns = function () {
   });
 };
 renderPurchaseBtns();
+
+// Workout how many units have been entered for purchase
+const workoutEnteredAmount = function (e, accountAmount) {
+  let totalInput = 0;
+  const secondInput = e.key;
+  const firstInput = document.querySelector(".buy-input").value;
+
+  // Join values and turn to number type
+  totalInput = +firstInput.concat(secondInput);
+
+  const price = mockData.find(function (share) {
+    return share.ticker === targetShareID;
+  }).price;
+  const totalAmount = price * totalInput;
+
+  // If a non number key is pressed do nothing
+  if (Number.isNaN(totalInput)) {
+  } else {
+    // Otherwise render the purchase summary message
+    viewBuyPopUp.renderPurchaseSummary(totalInput, targetShareID, totalAmount);
+  }
+
+  // If the value entered is more than what's in the account
+  if (accountAmount < totalAmount) {
+    viewBuyPopUp.renderPurchaseError(totalAmount, accountAmount);
+  }
+  return totalAmount;
+};
 
 // Back button to return to view more pop up
 backBtn.addEventListener("click", function () {
@@ -244,6 +271,8 @@ const purchaseShares = function () {
 
         // If there is not enough:
         if (result === "rejected") {
+          // Turn error text red for more emphasis
+          viewBuyPopUp.renderMainPurchaseError();
         }
       } else {
         // Render error message: 'Please enter an amount'
@@ -256,26 +285,11 @@ purchaseShares();
 
 const updatePurchaseSummary = function () {
   document.addEventListener("keydown", function (e) {
-    //const renderPurchaseSummary = function (quantity, stock, amount)
     const buyContainer = document.querySelector(".buy-container");
 
-    if (buyContainer && e.key != "Backspace") {
-      let totalInput = 0;
-      const secondInput = e.key;
-      const firstInput = document.querySelector(".buy-input").value;
-
-      totalInput = +firstInput.concat(secondInput);
-
-      const price = mockData.find(function (share) {
-        return share.ticker === targetShareID;
-      }).price;
-      const totalAmount = price * totalInput;
-
-      viewBuyPopUp.renderPurchaseSummary(
-        totalInput,
-        targetShareID,
-        totalAmount
-      );
+    // If buy container exists yet
+    if (buyContainer) {
+      console.log(workoutEnteredAmount(e, modelObject.account1.fundsAvailable));
     }
   });
 };

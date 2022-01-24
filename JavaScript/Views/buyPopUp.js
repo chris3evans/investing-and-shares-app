@@ -57,3 +57,17 @@ export const renderPurchaseSummary = function (quantity, stock, amount) {
 
   purchaseSummary.textContent = `Buy ${quantity} ${stock} for $${amount}`;
 };
+
+export const renderPurchaseError = function (totalAmount, accountAmount) {
+  const purchaseSummary = document.querySelector(".summary-text");
+
+  purchaseSummary.textContent = `Oops, not enough funds! Deposit $${(
+    totalAmount - accountAmount
+  ).toFixed(2)} more to make stock purchase`;
+};
+
+export const renderMainPurchaseError = function () {
+  const purchaseSummary = document.querySelector(".summary-text");
+
+  purchaseSummary.classList.add("text-alert");
+};
