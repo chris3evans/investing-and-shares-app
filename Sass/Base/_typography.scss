@@ -31,3 +31,9 @@
   font-family: Arial, Helvetica, sans-serif;
   color: $color-dark-blue;
 }
+
+.deposit-error-message {
+  color: red !important;
+  text-align: center !important;
+  padding-top: 2rem !important;
+}

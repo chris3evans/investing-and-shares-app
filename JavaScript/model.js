@@ -439,6 +439,23 @@ export const addToInvestments = function (
   }
 };
 
+// TOP BUTTONS LOGIC
+//
+
+// Pushing deposit value to account balance
+export const depositAccount = function (enteredDepositAmount) {
+  if (enteredDepositAmount > 0) {
+    const curFundsAvailable = account1.fundsAvailable;
+    const newFunds = enteredDepositAmount;
+
+    account1.fundsAvailable = curFundsAvailable + newFunds;
+    console.log("deposit function activated");
+    return "success";
+  } else {
+    return "error";
+  }
+};
+
 // BOTTOM BAR STATISTICS LOGIC
 //
 

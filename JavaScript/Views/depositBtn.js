@@ -23,10 +23,36 @@ export const renderDepositPopup = function () {
   backBtn.classList.add("hidden");
 };
 
+export const renderDepositErrorMessage = function () {
+  const depositErrorHtml = `
+    <p class="main-text deposit-error-message">Please enter an amount greater than zero!</p>
+    `;
+  const depositContainer = document.querySelector(".deposit-container");
+
+  //if (depositContainer) {
+  //depositContainer.insertAdjacentHTML("beforeend", //depositErrorHtml);
+  //return;
+  //}
+
+  if (depositContainer && depositErrorHtml) {
+    depositContainer.insertAdjacentHTML("beforeend", depositErrorHtml);
+    return;
+  } else {
+    return;
+  }
+};
+
 export const clearDepositPopup = function () {
   const depositContainer = document.querySelector(".deposit-container");
+  const depositError = document.querySelector(".deposit-error-message");
 
   if (depositContainer) {
     depositContainer.remove();
+    return;
+  }
+  if (depositContainer && depositError) {
+    depositContainer.remove();
+    depositError.remove();
+    return;
   }
 };

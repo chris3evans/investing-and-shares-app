@@ -76,6 +76,12 @@ body {
   color: #050553;
 }
 
+.deposit-error-message {
+  color: red !important;
+  text-align: center !important;
+  padding-top: 2rem !important;
+}
+
 .overlay {
   background-color: rgba(0, 0, 0, 0.15);
   position: absolute;

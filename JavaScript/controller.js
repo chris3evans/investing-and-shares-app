@@ -256,7 +256,34 @@ depositBtn.addEventListener("click", function () {
 document.addEventListener("click", function (e) {
   // If the correct button is clicked
   if (e.target.classList.contains("deposit-btn")) {
-    console.log("why");
+    // Get the value entered in the input
+    const depositInput = +document.querySelector(".deposit-input").value;
+
+    let result = modelObject.depositAccount(depositInput);
+
+    // If invalid input
+    if (result === "error") {
+      // Render deposit error message
+      viewDepositBtn.renderDepositErrorMessage();
+      return;
+    }
+
+    if (result === "success") {
+      // Pass into model
+      result;
+
+      // Close the window
+      viewMorePopUp.hideViewMore();
+
+      viewMorePopUp.clearViewMore();
+      viewBuyPopUp.clearPurchase();
+      viewDepositBtn.clearDepositPopup();
+
+      // Re-render bottom bar statistics with updated data
+      updateBottomBar();
+
+      return;
+    }
   }
 });
 
