@@ -2,12 +2,15 @@ import * as modelObject from "./model.js";
 import * as mainViewObject from "./Views/mainView.js";
 import * as viewMorePopUp from "./Views/viewMorePopUp.js";
 import * as viewBuyPopUp from "./Views/buyPopUp.js";
+import * as viewBottomBar from "./Views/bottomBar.js";
+import * as viewDepositBtn from "./Views/depositBtn.js";
 
 const popUp = document.querySelector(".popup");
 const overlay = document.querySelector(".overlay");
 const btnClosePopUp = document.querySelector(".details-close-icon");
 const backBtn = document.querySelector(".details-back-icon");
 const buyBtn = document.querySelector("#btn-buy-text");
+const depositBtn = document.querySelector("#btnDeposit");
 
 // RENDER INITIAL SHARES CODE
 //
@@ -59,6 +62,7 @@ document.addEventListener("keydown", function (e) {
 
     viewMorePopUp.clearViewMore();
     viewBuyPopUp.clearPurchase();
+    viewDepositBtn.clearDepositPopup();
   }
 });
 
@@ -67,6 +71,7 @@ btnClosePopUp.addEventListener("click", function () {
 
   viewMorePopUp.clearViewMore();
   viewBuyPopUp.clearPurchase();
+  viewDepositBtn.clearDepositPopup();
 });
 
 overlay.addEventListener("click", function () {
@@ -75,6 +80,7 @@ overlay.addEventListener("click", function () {
 
     viewMorePopUp.clearViewMore();
     viewBuyPopUp.clearPurchase();
+    viewDepositBtn.clearDepositPopup();
   }
 });
 
@@ -201,79 +207,22 @@ const purchaseShares = function () {
           targetSharePrice
         );
 
-        // If there is enough:
-        if (result === "approved") {
-          const targetShareName = mockData.find(function (share) {
-            return share.ticker === targetShareID;
-          }).name;
-          // If investment does not exist
-          if (
-            !modelObject.existingInvestment(modelObject.account1, targetShareID)
-          ) {
-            // Create a new array for this investment
-            const newInvestmentArray = new Array(`${targetShareID}`);
-
-            // Create new investment object
-            /*
-            shareName,
-            sharePrice,
-            shareTicker,
-            numShares,
-            portPercentage,
-            initValue,
-            curValue,
-            gainLoss,
-            */
-            const newInvestment = modelObject.createInvestment(
-              //modelObject.account1,
-              targetShareName,
-              targetSharePrice,
-              targetShareID,
-              inputValue,
-              100,
-              2000,
-              2200,
-              0.25
-            );
-
-            // Add first investment object to new investment array
-            newInvestmentArray.push(newInvestment);
-
-            // Push this new investment array to the account's portfolio array
-            modelObject.account1.portfolio.push(newInvestmentArray);
-            console.log(modelObject.account1);
-          } else {
-            console.log("investment exists");
-            // Create new investment object
-            const existingInvestment = modelObject.createInvestment(
-              targetShareName,
-              targetSharePrice,
-              targetShareID,
-              inputValue,
-              100,
-              2000,
-              2200,
-              0.25
-            );
-
-            // Find correct investment array
-            const targetInvestmentArray = modelObject.account1.portfolio.find(
-              function (investment) {
-                return investment[0] === targetShareID;
-              }
-            );
-
-            // Push investment object to existing investment array
-            targetInvestmentArray.push(existingInvestment);
-            console.log(modelObject.account1);
-          }
-        }
+        modelObject.addToInvestments(
+          mockData,
+          modelObject.account1,
+          result,
+          targetShareID,
+          targetSharePrice,
+          inputValue
+        );
 
         // If there is not enough:
-        if (result === "rejected") {
+        /*if (addition === "error") {
           // Turn error text red for more emphasis
           viewBuyPopUp.renderMainPurchaseError();
-        }
+        }*/
+        console.log(modelObject.account1);
+        return;
       } else {
         // Render error message: 'Please enter an amount'
         return;
@@ -294,3 +243,37 @@ const updatePurchaseSummary = function () {
   });
 };
 updatePurchaseSummary();
+
+// TOP BUTTONS LOGIC
+//
+
+// Open deposits pop up
+depositBtn.addEventListener("click", function () {
+  viewDepositBtn.renderDepositPopup();
+});
+
+// Submit deposit button
+document.addEventListener("click", function (e) {
+  // If the correct button is clicked
+  if (e.target.classList.contains("deposit-btn")) {
+    console.log("why");
+  }
+});
+
+// BOTTOM BAR STATISTICS LOGIC
+//
+
+const updateBottomBar = function () {
+  // Update funds available
+  viewBottomBar.renderFundsAvailanble(modelObject.getFundsAvailable());
+
+  // Update funds invested
+  viewBottomBar.renderFundsInvested(modelObject.getFundsInvested());
+
+  // Update net gain loss
+  viewBottomBar.renderNetGainLoss(modelObject.getNetGainLoss());
+
+  // Update account's current value;
+  viewBottomBar.renderCurrentValue(modelObject.getCurrentValue());
+};
+updateBottomBar();

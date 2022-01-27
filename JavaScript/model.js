@@ -192,7 +192,7 @@ class Account {
   }
 }
 
-export const account1 = new Account("Chris Evans", 10000, 200, 0.25, 12750);
+export const account1 = new Account("Chris Evans", 10000, 200, 75, 12750);
 
 // The array elments for the "Account" class' portfolio array
 class Investment {
@@ -260,7 +260,6 @@ const check = checkFunds(2500, 250, 9);
 export const calcFundsToBeUsed = function (fundCheck, unitInput, sharePrice) {
   if (fundCheck === "approved") {
     const numFunds = unitInput * sharePrice;
-    console.log(numFunds);
   } else {
     console.log("Purchase rejected: not enough funds!");
   }
@@ -275,7 +274,6 @@ export const calcSharesToBeBought = function (
 ) {
   if (fundCheck === "approved") {
     const numShares = fundInput / sharePrice;
-    console.log(numShares);
   } else {
     console.log("Purchase3 rejected: add more funds!");
   }
@@ -290,16 +288,13 @@ export const testFundsValue = calcSharesToBeBought(check, 2250, 250);
 //
 
 // Check for existing investment
-export const existingInvestment = function (
-  accountPortfolio,
-  targetStockTicker
-) {
+export const existingInvestment = function (account, targetStockTicker) {
   // Investment does not exist
-  if (accountPortfolio.portfolio.length === 0) return false;
+  if (account.portfolio.length === 0) return false;
 
   // Investment does exist
   if (
-    accountPortfolio.portfolio.find(function (investment) {
+    account.portfolio.find(function (investment) {
       return investment[0] === targetStockTicker;
     })
   ) {
@@ -360,4 +355,114 @@ export const createTrade = function (
   //targetInvestment.push(newTrade);
 };
 
-// Push new trade to existing investment
+// Add to investments as a whole
+export const addToInvestments = function (
+  data,
+  account,
+  fundCheckResult,
+  targetShareID,
+  targetSharePrice,
+  inputValue
+) {
+  if (fundCheckResult === "approved") {
+    const targetShareName = data.find(function (share) {
+      return share.ticker === targetShareID;
+    }).name;
+
+    const investmentType = existingInvestment(account, targetShareID);
+
+    // If investment does not exist
+    if (investmentType === false) {
+      // Create a new array for this investment
+      const newInvestmentArray = new Array(`${targetShareID}`);
+
+      // Create new investment object
+      /*
+      shareName,
+      sharePrice,
+      shareTicker,
+      numShares,
+      portPercentage,
+      initValue,
+      curValue,
+      gainLoss,
+      */
+      const newInvestment = createInvestment(
+        //modelObject.account1,
+        targetShareName,
+        targetSharePrice,
+        targetShareID,
+        inputValue,
+        100,
+        2000,
+        2200,
+        0.25
+      );
+
+      // Add first investment object to new investment array
+      newInvestmentArray.push(newInvestment);
+
+      // Push this new investment array to the account's portfolio array
+      account.portfolio.push(newInvestmentArray);
+      return;
+    }
+
+    if (investmentType === true) {
+      // Create new investment object
+      const existingInvestment = createInvestment(
+        targetShareName,
+        targetSharePrice,
+        targetShareID,
+        inputValue,
+        100,
+        2000,
+        2200,
+        0.25
+      );
+
+      // Find correct investment array
+      const targetInvestmentArray = account.portfolio.find(function (
+        investment
+      ) {
+        return investment[0] === targetShareID;
+      });
+
+      // Push investment object to existing investment array
+      targetInvestmentArray.push(existingInvestment);
+      return;
+    }
+  }
+
+  if (fundCheckResult === "rejected") {
+    // Turn error text red for more emphasis
+    return "error";
+  }
+};
+
+// BOTTOM BAR STATISTICS LOGIC
+//
+
+// Funds available data
+export const getFundsAvailable = function () {
+  return account1.fundsAvailable;
+};
+
+// Funds invested data
+export const getFundsInvested = function () {
+  return account1.fundsInvested;
+};
+
+// Net loss gain data
+export const getNetGainLoss = function () {
+  const accountChangeValue = account1.netLossGain;
+
+  return accountChangeValue;
+};
+
+// Total account value data
+export const getCurrentValue = function () {
+  const currentValue =
+    account1.fundsAvailable + account1.fundsInvested + account1.netLossGain;
+
+  return currentValue;
+};

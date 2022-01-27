@@ -1,0 +1,19 @@
+.deposit {
+  display: flex;
+  justify-content: center;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 5rem 0rem;
+  }
+
+  &-input {
+    margin-bottom: 2rem;
+    height: 6rem;
+    width: 100%;
+    background-color: white;
+    border: none;
+  }
+}

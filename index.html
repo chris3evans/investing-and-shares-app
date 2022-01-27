@@ -34,103 +34,16 @@
             </svg>
           </div>
         </div>
-        <!--<div class="details-container">
-          <div class="details-logo">
-            <img
-              class="details-logo-file"
-              src="External Content/AppleLogo.png"
+
+        <!--<div class="deposit">
+          <div class="deposit-container">
+            <input
+              type="number"
+              class="deposit-input"
+              placeholder="Currency will be in USD"
             />
+            <button class="btn btn-dark deposits-btn">Add funds</button>
           </div>
-
-          <div class="details-info details-name">
-            <p class="main-text">Name:</p>
-            <p class="main-text" id="stockName">_</p>
-          </div>
-
-          <div class="details-info details-ticker">
-            <p class="main-text">Ticker:</p>
-            <p class="main-text" id="tickerSymbol">APPL</p>
-          </div>
-
-          <div class="details-info details-price">
-            <p class="main-text">Share Price:</p>
-            <p class="main-text" id="sharePrice">$172</p>
-          </div>
-
-          <div class="details-info details-day-low">
-            <p class="main-text">Day Low:</p>
-            <p class="main-text" id="dayLow">$171.20</p>
-          </div>
-
-          <div class="details-info details-day-high">
-            <p class="main-text">Day High:</p>
-            <p class="main-text" id="dayHigh">$177.55</p>
-          </div>
-
-          <div class="details-info details-market">
-            <p class="main-text">Market:</p>
-            <p class="main-text" id="market">NASDAQ</p>
-          </div>
-
-          <div class="details-info details-marketcap">
-            <p class="main-text">Market Cap:</p>
-            <p class="main-text" id="marketCap">$2.86T</p>
-          </div>
-
-          <div class="details-info details-52low">
-            <p class="main-text">52 Week-Low:</p>
-            <p class="main-text" id="yearLow">$116.22</p>
-          </div>
-
-          <div class="details-info details-52high">
-            <p class="main-text">52 Week-High:</p>
-            <p class="main-text" id="yearHigh">$182.71</p>
-          </div>
-        </div>-->
-
-        <!---///////////////////////////////////////////////////////-->
-
-        <!--<div class="buy">
-        <div class="buy-navigation">
-          <svg class="buy-back-icon">
-            <use
-              xlink:href="CSS/arrow-left-sprite.svg#icon-arrow-long-left"
-            ></use>
-          </svg>
-
-          <svg class="buy-close-icon">
-            <use xlink:href="CSS/close-sprite.svg#icon-cross"></use>
-          </svg>
-        </div>
-
-        <div class="buy-container">
-          <div class="buy-selector">
-            <div class="buy-units units-selected">
-              <p class="main-text cursor-pointer center-text">Units</p>
-            </div>
-            <div class="buy-funds">
-              <p class="main-text cursor-pointer center-text">Funds</p>
-            </div>
-
-            <div class="buy-amount">
-              <button class="square-btn" id="buy-less">-</button>
-              <input type="number" class="buy-input" />
-              <button class="square-btn" id="buy-more">+</button>
-            </div>
-          </div>
-
-          <div class="buy-summary">
-            <p class="main-text center-text">Buy X TSLA for $X</p>
-          </div>
-
-          <div class="details-btn">
-            <button type="submit" class="btn btn-dark">Purchase</button>
-          </div>
-        </div>
-      </div>
-
-        <div class="details-btn" id="btn-buy">
-          <button class="btn btn-dark" id="btn-buy-text">Buy shares</button>
         </div>-->
       </div>
     </div>
@@ -181,22 +94,22 @@
       <div class="funds">
         <div class="funds-item funds-available">
           <h4 class="heading-4">Funds available</h4>
-          <h2 class="heading-2">*FUNDS AVAILABLE*</h2>
+          <h2 class="heading-2" id="funds-available">*FUNDS AVAILABLE*</h2>
         </div>
 
         <div class="funds-item funds-invested">
           <h4 class="heading-4">Funds invested</h4>
-          <h2 class="heading-2">*FUNDS INVESTED*</h2>
+          <h2 class="heading-2" id="funds-invested">*FUNDS INVESTED*</h2>
         </div>
 
         <div class="funds-item funds-change">
           <h4 class="heading-4">Net profit / loss</h4>
-          <h2 class="heading-2">*NET GAIN / LOSS*</h2>
+          <h2 class="heading-2" id="net-gain-loss">*NET GAIN / LOSS*</h2>
         </div>
 
         <div class="funds-item funds-value">
           <h4 class="heading-4">Current value</h4>
-          <h2 class="heading-2">*TOTAL VALUE*</h2>
+          <h2 class="heading-2" id="current-value">*TOTAL VALUE*</h2>
         </div>
       </div>
     </section>
