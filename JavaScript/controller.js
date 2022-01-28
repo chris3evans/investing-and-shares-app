@@ -4,6 +4,7 @@ import * as viewMorePopUp from "./Views/viewMorePopUp.js";
 import * as viewBuyPopUp from "./Views/buyPopUp.js";
 import * as viewBottomBar from "./Views/bottomBar.js";
 import * as viewDepositBtn from "./Views/depositBtn.js";
+import * as viewWithdrawBtn from "./Views/withdrawBtn.js";
 
 const popUp = document.querySelector(".popup");
 const overlay = document.querySelector(".overlay");
@@ -11,6 +12,7 @@ const btnClosePopUp = document.querySelector(".details-close-icon");
 const backBtn = document.querySelector(".details-back-icon");
 const buyBtn = document.querySelector("#btn-buy-text");
 const depositBtn = document.querySelector("#btnDeposit");
+const withdrawBtn = document.querySelector("#btnWithdraw");
 
 // RENDER INITIAL SHARES CODE
 //
@@ -63,6 +65,7 @@ document.addEventListener("keydown", function (e) {
     viewMorePopUp.clearViewMore();
     viewBuyPopUp.clearPurchase();
     viewDepositBtn.clearDepositPopup();
+    viewWithdrawBtn.clearWithdrawPopUp();
   }
 });
 
@@ -72,6 +75,7 @@ btnClosePopUp.addEventListener("click", function () {
   viewMorePopUp.clearViewMore();
   viewBuyPopUp.clearPurchase();
   viewDepositBtn.clearDepositPopup();
+  viewWithdrawBtn.clearWithdrawPopUp();
 });
 
 overlay.addEventListener("click", function () {
@@ -81,6 +85,7 @@ overlay.addEventListener("click", function () {
     viewMorePopUp.clearViewMore();
     viewBuyPopUp.clearPurchase();
     viewDepositBtn.clearDepositPopup();
+    viewWithdrawBtn.clearWithdrawPopUp();
   }
 });
 
@@ -247,6 +252,52 @@ updatePurchaseSummary();
 // TOP BUTTONS LOGIC
 //
 
+// Open withdraw pop up
+withdrawBtn.addEventListener("click", function () {
+  viewWithdrawBtn.renderWithdrawPopUp();
+});
+
+// Submit withdraw button
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("withdraw-btn")) {
+    const withdrawInput = document.querySelector(".withdraw-input").value;
+    console.log(withdrawInput);
+
+    let withdrawResult = modelObject.withdrawAccount(withdrawInput);
+
+    // If invalid input entered
+    if (withdrawResult === "failure-invalid-input") {
+      viewWithdrawBtn.renderWithdrawErrorMessage(
+        "Please enter an amount greater than zero!"
+      );
+    }
+
+    // If not enough in account to withdraw
+    if (withdrawResult === "failure-not-enough") {
+      viewWithdrawBtn.renderWithdrawErrorMessage(
+        "You do not have enough funds to withdraw this much!"
+      );
+    }
+
+    if (withdrawResult === "success") {
+      // Pass into model
+      withdrawResult;
+
+      // Close the window
+      viewMorePopUp.hideViewMore();
+
+      viewMorePopUp.clearViewMore();
+      viewBuyPopUp.clearPurchase();
+      viewWithdrawBtn.clearWithdrawPopUp();
+
+      // Re-render bottom bar statistics with updated data
+      updateBottomBar();
+
+      return;
+    }
+  }
+});
+
 // Open deposits pop up
 depositBtn.addEventListener("click", function () {
   viewDepositBtn.renderDepositPopup();
@@ -259,18 +310,18 @@ document.addEventListener("click", function (e) {
     // Get the value entered in the input
     const depositInput = +document.querySelector(".deposit-input").value;
 
-    let result = modelObject.depositAccount(depositInput);
+    let depositResult = modelObject.depositAccount(depositInput);
 
     // If invalid input
-    if (result === "error") {
+    if (depositResult === "error") {
       // Render deposit error message
       viewDepositBtn.renderDepositErrorMessage();
       return;
     }
 
-    if (result === "success") {
+    if (depositResult === "success") {
       // Pass into model
-      result;
+      depositResult;
 
       // Close the window
       viewMorePopUp.hideViewMore();

@@ -442,14 +442,32 @@ export const addToInvestments = function (
 // TOP BUTTONS LOGIC
 //
 
-// Pushing deposit value to account balance
+// Removing deposit value from account balance
+export const withdrawAccount = function (enteredWithdrawAmount) {
+  // Is there enough to withdraw AND was a valid input entered?
+  if (
+    enteredWithdrawAmount <= account1.fundsAvailable &&
+    enteredWithdrawAmount > 0
+  ) {
+    const curFundsAvailable = account1.fundsAvailable;
+    const fundsRequested = enteredWithdrawAmount;
+
+    account1.fundsAvailable = curFundsAvailable - fundsRequested;
+    return "success";
+  } else if (enteredWithdrawAmount > account1.fundsAvailable) {
+    return "failure-not-enough";
+  } else {
+    return "failure-invalid-input";
+  }
+};
+
+// Adding deposit value to account balance
 export const depositAccount = function (enteredDepositAmount) {
   if (enteredDepositAmount > 0) {
     const curFundsAvailable = account1.fundsAvailable;
     const newFunds = enteredDepositAmount;
 
     account1.fundsAvailable = curFundsAvailable + newFunds;
-    console.log("deposit function activated");
     return "success";
   } else {
     return "error";

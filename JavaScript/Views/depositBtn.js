@@ -29,12 +29,7 @@ export const renderDepositErrorMessage = function () {
     `;
   const depositContainer = document.querySelector(".deposit-container");
 
-  //if (depositContainer) {
-  //depositContainer.insertAdjacentHTML("beforeend", //depositErrorHtml);
-  //return;
-  //}
-
-  if (depositContainer && depositErrorHtml) {
+  if (depositContainer) {
     depositContainer.insertAdjacentHTML("beforeend", depositErrorHtml);
     return;
   } else {

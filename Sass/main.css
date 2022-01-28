@@ -589,6 +589,35 @@ body {
   padding: 2rem 0rem;
 }
 
+.withdraw {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.withdraw-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 50%;
+  margin: 5rem 0rem;
+}
+
+.withdraw-input {
+  margin-bottom: 2rem;
+  height: 6rem;
+  width: 100%;
+  background-color: white;
+  border: none;
+}
+
 .funds {
   display: -webkit-box;
   display: -ms-flexbox;
