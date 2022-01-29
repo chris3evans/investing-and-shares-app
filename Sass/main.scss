@@ -10,10 +10,13 @@
 @import "Components/buy-popup";
 @import "Components/deposit-funds-popup";
 @import "Components/dom-classes";
+@import "Components/movement";
 @import "Components/share-1";
+@import "Components/trade";
 @import "Components/viewmore-popup";
 @import "Components/withdraw-funds-popup";
 
+@import "Layouts/accountNavigation";
 @import "Layouts/funds";
 @import "Layouts/grid";
 @import "Layouts/section-main";

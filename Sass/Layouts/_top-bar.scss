@@ -5,12 +5,10 @@
   padding: 3rem;
   grid-row: 1 / 2;
 
-  &-left {
+  &-left,
+  &-right {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2rem;
-  }
-
-  &-right {
   }
 }

@@ -1,0 +1,29 @@
+.view-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+
+  &-left {
+  }
+
+  &-back-icon {
+    height: 5rem;
+    width: 5rem;
+    fill: black;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-0.2rem);
+    }
+  }
+
+  &-right {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-column-gap: 2rem;
+  }
+}

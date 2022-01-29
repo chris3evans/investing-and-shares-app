@@ -58,36 +58,70 @@
         </div>
 
         <div class="functions-right">
+          <button class="btn btn-dark" id="btnAccount">View Account</button>
+
           <button class="btn btn-dark" id="btnPortfolio">View Portfolio</button>
         </div>
       </div>
 
       <!--VIEWING WINDOW-->
+
+      <!--NAVIGATION BAR REVEALED FOR ACCOUNT HISTORY-->
       <div class="view">
-        <!--SHARES ARE LISTED INSIDE HERE-->
-        <div class="view-container">
-          <!--SHARE VIEW-->
-          <!--<div class="share">
-            <div class="share-info">
+        <div class="view-nav">
+          <div class="view-nav-left">
+              <svg class="view-nav-back-icon">
+                <use
+                  xlink:href="CSS/arrow-left-sprite.svg#icon-arrow-long-left"
+                ></use>
+          </div>
 
-              <div class="share-name">
-                <h3 class="heading-3">Apple</h3>
-              </div>
+          <div class="view-nav-right">
+            <button class="btn btn-dark" id="btnMovements">Movements</button>
 
-              <div class="share-ticker">
-                <h3 class="heading-3">APPL</h3>
-              </div>
+            <button class="btn btn-light" id="btnTrades">Trades</button>
+          </div>
 
-              <div class="share-price">
-                <h3 class="heading-3">$200</h3>
-              </div>
-            </div>
-
-            <div class="share-view">
-              <button class="btn btn-dark">View</button>
-            </div>
-          </div>-->
         </div>
+          <!--SHARES ARE LISTED INSIDE HERE-->
+          <div class="view-container">
+
+            <!--A MOVEMENT HISTORY-->
+            <div class="movement">
+              <div class="movement-info">
+  
+                <div class="movement-date">
+                  <h3 class="heading-3">12/02/2021</h3>
+                </div>
+  
+                <div class="movement-type">
+                  <h3 class="heading-3">DEPOSIT</h3>
+                </div>
+  
+                <div class="movement-amount">
+                  <h3 class="heading-3">$200</h3>
+                </div>
+              </div>
+            </div>
+
+            <!--A TRADE HISTORY-->
+            <div class="trade">
+              <div class="trade-info">
+  
+                <div class="trade-date">
+                  <h3 class="heading-3">18/02/2021</h3>
+                </div>
+  
+                <div class="trade-type">
+                  <h3 class="heading-3">SOLD</h3>
+                </div>
+  
+                <div class="trade-amount">
+                  <h3 class="heading-3">$180</h3>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
       <!--FUNDS-->
