@@ -442,6 +442,17 @@ export const addToInvestments = function (
 // TOP BUTTONS LOGIC
 //
 
+// Function to record date
+const recordDate = function () {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const year = String(today.getFullYear());
+
+  const fullDate = `${day}/${month}/${year}`;
+  return fullDate;
+};
+
 // Removing deposit value from account balance
 export const withdrawAccount = function (enteredWithdrawAmount) {
   // Is there enough to withdraw AND was a valid input entered?
@@ -452,7 +463,18 @@ export const withdrawAccount = function (enteredWithdrawAmount) {
     const curFundsAvailable = account1.fundsAvailable;
     const fundsRequested = enteredWithdrawAmount;
 
+    // Update fundsAvailable data in account
     account1.fundsAvailable = curFundsAvailable - fundsRequested;
+
+    // Record the date that this request was made
+    const curDate = recordDate();
+
+    // Push a new movement object to movements history
+    account1.movementHistory.push({
+      movement: -fundsRequested,
+      date: curDate,
+    });
+
     return "success";
   } else if (enteredWithdrawAmount > account1.fundsAvailable) {
     return "failure-not-enough";
@@ -467,7 +489,17 @@ export const depositAccount = function (enteredDepositAmount) {
     const curFundsAvailable = account1.fundsAvailable;
     const newFunds = enteredDepositAmount;
 
+    // Update fundsAvailable data in account
     account1.fundsAvailable = curFundsAvailable + newFunds;
+
+    // Record the date that this request was made
+    const curDate = recordDate();
+
+    // Add and update this deposit (movement) to movementHistory array
+    account1.movementHistory.push({
+      movement: newFunds,
+      date: curDate,
+    });
     return "success";
   } else {
     return "error";

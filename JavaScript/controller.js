@@ -5,6 +5,7 @@ import * as viewBuyPopUp from "./Views/buyPopUp.js";
 import * as viewBottomBar from "./Views/bottomBar.js";
 import * as viewDepositBtn from "./Views/depositBtn.js";
 import * as viewWithdrawBtn from "./Views/withdrawBtn.js";
+import * as viewAccount from "./Views/viewAccount.js";
 
 const popUp = document.querySelector(".popup");
 const overlay = document.querySelector(".overlay");
@@ -13,6 +14,10 @@ const backBtn = document.querySelector(".details-back-icon");
 const buyBtn = document.querySelector("#btn-buy-text");
 const depositBtn = document.querySelector("#btnDeposit");
 const withdrawBtn = document.querySelector("#btnWithdraw");
+const viewAccountBtn = document.querySelector("#btnAccount");
+const accountBackBtn = document.querySelector(".view-nav-back-icon");
+const movementsBtn = document.querySelector("#btnMovements");
+const tradesBtn = document.querySelector("#btnTrades");
 
 // RENDER INITIAL SHARES CODE
 //
@@ -335,6 +340,62 @@ document.addEventListener("click", function (e) {
 
       return;
     }
+  }
+});
+console.log(modelObject.account1);
+// View account button
+viewAccountBtn.addEventListener("click", function () {
+  // Reveal navigation for viewing account history
+  viewAccount.renderAccountNavigation();
+
+  // Clear share cards
+  viewAccount.clearViewWindow();
+
+  // If there is no account history yet
+  if (modelObject.account1.movementHistory.length === 0) {
+    console.log("no history");
+  }
+
+  //  Render movement history cards (if there are any)
+  if (modelObject.account1.movementHistory.length > 0) {
+    viewAccount.renderAccountMovements(modelObject.account1.movementHistory);
+  }
+});
+
+// Close view account history
+accountBackBtn.addEventListener("click", function () {
+  viewAccount.hideAccountNavigation();
+});
+
+// Switching between viewing movements history and trades history
+tradesBtn.addEventListener("click", function () {
+  // Adjusting CSS styling
+  movementsBtn.classList.remove("btn-dark");
+  movementsBtn.classList.add("btn-light");
+  tradesBtn.classList.remove("btn-light");
+  tradesBtn.classList.add("btn-dark");
+
+  // Clear old content
+  viewAccount.clearViewWindow();
+});
+
+movementsBtn.addEventListener("click", function () {
+  // Adjusting CSS styling
+  tradesBtn.classList.remove("btn-dark");
+  tradesBtn.classList.add("btn-light");
+  movementsBtn.classList.remove("btn-light");
+  movementsBtn.classList.add("btn-dark");
+
+  // Clear old content
+  viewAccount.clearViewWindow();
+
+  // Render movement history cards
+  if (modelObject.account1.movementHistory.length === 0) {
+    console.log("no history");
+  }
+
+  if (modelObject.account1.movementHistory.length > 0) {
+    viewAccount.renderAccountMovements(modelObject.account1.movementHistory);
   }
 });
 
