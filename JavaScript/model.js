@@ -171,6 +171,17 @@ export const testData = [
   },
 ];
 
+// Function to record date
+const recordDate = function () {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const year = String(today.getFullYear());
+
+  const fullDate = `${day}/${month}/${year}`;
+  return fullDate;
+};
+
 // Stores data at the account level
 class Account {
   constructor(
@@ -376,6 +387,9 @@ export const addToInvestments = function (
       // Create a new array for this investment
       const newInvestmentArray = new Array(`${targetShareID}`);
 
+      // Workout the initial value of the investment
+      const initialValue = targetSharePrice * inputValue;
+
       // Create new investment object
       /*
       shareName,
@@ -393,7 +407,7 @@ export const addToInvestments = function (
         targetSharePrice,
         targetShareID,
         inputValue,
-        100,
+        initialValue,
         2000,
         2200,
         0.25
@@ -404,6 +418,18 @@ export const addToInvestments = function (
 
       // Push this new investment array to the account's portfolio array
       account.portfolio.push(newInvestmentArray);
+
+      // Update the account's trade history
+      const curDate = recordDate();
+
+      account.tradeHistory.push({
+        date: curDate,
+        name: targetShareID,
+        type: "Purchase",
+        value: initialValue,
+        shares: inputValue,
+      });
+
       return;
     }
 
@@ -441,17 +467,6 @@ export const addToInvestments = function (
 
 // TOP BUTTONS LOGIC
 //
-
-// Function to record date
-const recordDate = function () {
-  const today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = String(today.getFullYear());
-
-  const fullDate = `${day}/${month}/${year}`;
-  return fullDate;
-};
 
 // Removing deposit value from account balance
 export const withdrawAccount = function (enteredWithdrawAmount) {

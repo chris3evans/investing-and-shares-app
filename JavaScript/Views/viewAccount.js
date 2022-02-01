@@ -13,7 +13,7 @@ export const hideAccountNavigation = function () {
 
 // Render the account movements history (deposits, withdrawals)
 export const renderAccountMovements = function (movementHistoryArray) {
-  // Otherwise loop over the array and render a movement card for each array element
+  // Loop over the array and render a movement card for each array element (which is an object)
   movementHistoryArray.forEach(function (movement) {
     mainViewContainer.insertAdjacentHTML(
       "beforeend",
@@ -46,7 +46,42 @@ export const renderAccountMovements = function (movementHistoryArray) {
 };
 
 // Render the account trades history (purchases, sales)
-export const renderAccountTrades = function () {};
+export const renderAccountTrades = function (tradesHistoryArray) {
+  console.log(tradesHistoryArray);
+  tradesHistoryArray.forEach(function (trade) {
+    mainViewContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="trade">
+            <div class="trade-info">
+
+            <div class="trade-date">
+                <h3 class="heading-3">${trade.date}</h3>
+            </div>
+
+            <div class="trade-name">
+                <h3 class="heading-3">${trade.name}</h3>
+            </div>  
+
+            <div class="trade-type">
+                <h3 class="heading-3">${trade.type}</h3>
+            </div>
+
+            <div class="trade-shares">
+                <h3 class="heading-3">${trade.shares} share${
+        trade.shares > 1 ? "s" : ""
+      }</h3>
+            </div>    
+
+            <div class="trade-amount">
+                <h3 class="heading-3">$${trade.value}</h3>
+            </div>
+            </div>
+        </div>
+            `
+    );
+  });
+};
 
 // Render empty account history view
 export const renderNoHistory = function () {};
@@ -88,6 +123,10 @@ export const clearViewWindow = function () {
       <div class="trade-date">
         <h3 class="heading-3">18/02/2021</h3>
       </div>
+
+      <div class="trade-name">
+        <h3 class="heading-3">GOOG</h3>
+      </div>  
 
       <div class="trade-type">
         <h3 class="heading-3">SOLD</h3>

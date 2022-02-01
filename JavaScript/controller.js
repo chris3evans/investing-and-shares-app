@@ -348,23 +348,38 @@ viewAccountBtn.addEventListener("click", function () {
   // Reveal navigation for viewing account history
   viewAccount.renderAccountNavigation();
 
+  // Return movement and trade buttons to original state
+  tradesBtn.classList.remove("btn-dark");
+  tradesBtn.classList.add("btn-light");
+  movementsBtn.classList.remove("btn-light");
+  movementsBtn.classList.add("btn-dark");
+
   // Clear share cards
   viewAccount.clearViewWindow();
 
   // If there is no account history yet
   if (modelObject.account1.movementHistory.length === 0) {
     console.log("no history");
+    return;
   }
 
   //  Render movement history cards (if there are any)
   if (modelObject.account1.movementHistory.length > 0) {
     viewAccount.renderAccountMovements(modelObject.account1.movementHistory);
+    return;
   }
 });
 
 // Close view account history
 accountBackBtn.addEventListener("click", function () {
+  // Hide account navigation UI
   viewAccount.hideAccountNavigation();
+
+  // Clear account history content
+  viewAccount.clearViewWindow();
+
+  // Render share cards
+  mainViewObject.renderStockList(mockData);
 });
 
 // Switching between viewing movements history and trades history
@@ -377,6 +392,16 @@ tradesBtn.addEventListener("click", function () {
 
   // Clear old content
   viewAccount.clearViewWindow();
+
+  // Render trade cards (if there are any)
+  if (modelObject.account1.tradeHistory.length === 0) {
+    console.log("no trade history");
+    return;
+  }
+
+  if (modelObject.account1.tradeHistory.length > 0) {
+    viewAccount.renderAccountTrades(modelObject.account1.tradeHistory);
+  }
 });
 
 movementsBtn.addEventListener("click", function () {
