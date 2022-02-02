@@ -32,6 +32,24 @@ mainViewObject.renderStockList(modelStockData);*/
 const mockData = modelObject.testData;
 mainViewObject.renderStockList(mockData);
 
+// BOTTOM BAR STATISTICS LOGIC
+//
+
+const updateBottomBar = function () {
+  // Update funds available
+  viewBottomBar.renderFundsAvailanble(modelObject.getFundsAvailable());
+
+  // Update funds invested
+  viewBottomBar.renderFundsInvested(modelObject.getFundsInvested());
+
+  // Update net gain loss
+  viewBottomBar.renderNetGainLoss(modelObject.getNetGainLoss());
+
+  // Update account's current value;
+  viewBottomBar.renderCurrentValue(modelObject.getCurrentValue());
+};
+updateBottomBar();
+
 // VIEW MORE POP UP CODE
 //
 
@@ -60,37 +78,35 @@ const openViewMorePopUp = function () {
   });
 };
 openViewMorePopUp();
-//
 
 // Close view more pop up
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && !popUp.classList.contains("hidden")) {
-    viewMorePopUp.hideViewMore();
 
-    viewMorePopUp.clearViewMore();
-    viewBuyPopUp.clearPurchase();
-    viewDepositBtn.clearDepositPopup();
-    viewWithdrawBtn.clearWithdrawPopUp();
-  }
-});
-
-btnClosePopUp.addEventListener("click", function () {
+// General function
+const closeViewMorePopUp = function () {
   viewMorePopUp.hideViewMore();
 
   viewMorePopUp.clearViewMore();
   viewBuyPopUp.clearPurchase();
   viewDepositBtn.clearDepositPopup();
   viewWithdrawBtn.clearWithdrawPopUp();
+};
+
+// via Escape key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !popUp.classList.contains("hidden")) {
+    closeViewMorePopUp();
+  }
 });
 
+// Via close button
+btnClosePopUp.addEventListener("click", function () {
+  closeViewMorePopUp();
+});
+
+// Via overlay
 overlay.addEventListener("click", function () {
   if (!popUp.classList.contains("hidden")) {
-    viewMorePopUp.hideViewMore();
-
-    viewMorePopUp.clearViewMore();
-    viewBuyPopUp.clearPurchase();
-    viewDepositBtn.clearDepositPopup();
-    viewWithdrawBtn.clearWithdrawPopUp();
+    closeViewMorePopUp();
   }
 });
 
@@ -232,7 +248,13 @@ const purchaseShares = function () {
           viewBuyPopUp.renderMainPurchaseError();
         }*/
         console.log(modelObject.account1);
-        return;
+        // Close the pop up window
+        closeViewMorePopUp();
+
+        // Update bottom bar statistics
+        updateBottomBar();
+
+        return "successful stock purchase";
       } else {
         // Render error message: 'Please enter an amount'
         return;
@@ -423,21 +445,3 @@ movementsBtn.addEventListener("click", function () {
     viewAccount.renderAccountMovements(modelObject.account1.movementHistory);
   }
 });
-
-// BOTTOM BAR STATISTICS LOGIC
-//
-
-const updateBottomBar = function () {
-  // Update funds available
-  viewBottomBar.renderFundsAvailanble(modelObject.getFundsAvailable());
-
-  // Update funds invested
-  viewBottomBar.renderFundsInvested(modelObject.getFundsInvested());
-
-  // Update net gain loss
-  viewBottomBar.renderNetGainLoss(modelObject.getNetGainLoss());
-
-  // Update account's current value;
-  viewBottomBar.renderCurrentValue(modelObject.getCurrentValue());
-};
-updateBottomBar();

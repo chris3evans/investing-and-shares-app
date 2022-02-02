@@ -337,6 +337,7 @@ export const createInvestment = function (
     curValue,
     gainLoss
   );
+
   return newInvestment;
   //targetAccount.portfolio.push(newInvestment);
 };
@@ -408,7 +409,6 @@ export const addToInvestments = function (
         targetShareID,
         inputValue,
         initialValue,
-        2000,
         2200,
         0.25
       );
@@ -429,6 +429,11 @@ export const addToInvestments = function (
         value: initialValue,
         shares: inputValue,
       });
+
+      // Update account balances
+      account.fundsAvailable = account.fundsAvailable - initialValue;
+
+      account.fundsInvested = account.fundsInvested + initialValue;
 
       return;
     }
