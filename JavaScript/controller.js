@@ -255,7 +255,9 @@ const purchaseShares = function () {
         closeViewMorePopUp();
 
         // Update bottom bar statistics
+        console.log("1");
         updateBottomBar();
+        console.log("2");
 
         return "successful stock purchase";
       } else {
@@ -460,13 +462,12 @@ portfolioBtn.addEventListener("click", function () {
   // Render portfolio headings
   viewPortfolio.renderPortfolioView();
 
-  // Tally up all individual data for group investment cards
+  // Tally up all individual data to render on group investment cards
   const tallyObjectArr = modelObject.buildTallyObject(
     modelObject.account1.portfolio
   );
-  console.log(tallyObjectArr);
 
-  // Render portfolio in view from account data
+  // Render group investment cards in portfolio view from account data
   viewPortfolio.renderGroupInvestment(tallyObjectArr);
 });
 

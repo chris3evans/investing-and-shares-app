@@ -203,7 +203,7 @@ class Account {
   }
 }
 
-export const account1 = new Account("Chris Evans", 10000, 200, 75, 12750);
+export const account1 = new Account("Chris Evans", 10000, 0, 0, 12750);
 
 // The array elments for the "Account" class' portfolio array
 class Investment {
@@ -460,6 +460,23 @@ export const addToInvestments = function (
 
       // Push investment object to existing investment array
       targetInvestmentArray.push(existingInvestment);
+
+      // Update the account's trade history
+      const curDate = recordDate();
+
+      account.tradeHistory.push({
+        date: curDate,
+        name: targetShareID,
+        type: "Purchase",
+        value: initialValue,
+        shares: inputValue,
+      });
+
+      // Update account balances
+      account.fundsAvailable = account.fundsAvailable - initialValue;
+
+      account.fundsInvested = account.fundsInvested + initialValue;
+
       return;
     }
   }
@@ -604,7 +621,6 @@ export const buildTallyObject = function (accountPortfolio) {
 
     tallyArray.push(tallyObject);
   });
-  console.log(tallyArray);
   return tallyArray;
 };
 
@@ -613,17 +629,17 @@ export const buildTallyObject = function (accountPortfolio) {
 
 // Funds available data
 export const getFundsAvailable = function () {
-  return account1.fundsAvailable;
+  return account1.fundsAvailable.toFixed(2);
 };
 
 // Funds invested data
 export const getFundsInvested = function () {
-  return account1.fundsInvested;
+  return account1.fundsInvested.toFixed(2);
 };
 
 // Net loss gain data
 export const getNetGainLoss = function () {
-  const accountChangeValue = account1.netLossGain;
+  const accountChangeValue = account1.netLossGain.toFixed(2);
 
   return accountChangeValue;
 };
@@ -633,5 +649,5 @@ export const getCurrentValue = function () {
   const currentValue =
     account1.fundsAvailable + account1.fundsInvested + account1.netLossGain;
 
-  return currentValue;
+  return currentValue.toFixed(2);
 };

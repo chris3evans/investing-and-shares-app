@@ -42,7 +42,6 @@ export const renderPortfolioView = function () {
 };
 
 export const renderGroupInvestment = function (groupInvestmentsArray) {
-  console.log(groupInvestmentsArray);
   const portfolioContainer = document.querySelector(".portfolio");
   // Render all GROUP investments
 
