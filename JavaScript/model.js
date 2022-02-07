@@ -212,7 +212,7 @@ class Investment {
     investmentSharePrice,
     investmentTicker,
     totalNumShares,
-    portPercentage,
+    //portPercentage,
     investmentInitValue,
     investmentCurValue,
     investmentGainLoss
@@ -220,8 +220,8 @@ class Investment {
     this.investmentShareName = investmentShareName;
     this.investmentSharePrice = investmentSharePrice;
     this.investmentTicker = investmentTicker;
-    this.totalNummShares = totalNumShares;
-    this.portPercentage = portPercentage;
+    this.totalNumShares = +totalNumShares;
+    //this.portPercentage = portPercentage;
     this.investmentInitValue = investmentInitValue;
     this.investmentCurValue = investmentCurValue;
     this.investmentGainLoss = investmentGainLoss;
@@ -244,11 +244,6 @@ class Trade {
     this.tradeValueInit = tradeValueInit;
     this.tradeValueCur = tradeValueCur;
     this.tradeGainLoss = tradeGainLoss;
-  }
-
-  calcInitTradeValue() {
-    const initTradeValue = this.sharePrice * this.numShares;
-    return initTradeValue;
   }
 }
 
@@ -322,7 +317,6 @@ export const createInvestment = function (
   sharePrice,
   shareTicker,
   numShares,
-  portPercentage,
   initValue,
   curValue,
   gainLoss
@@ -332,7 +326,6 @@ export const createInvestment = function (
     sharePrice,
     shareTicker,
     numShares,
-    portPercentage,
     initValue,
     curValue,
     gainLoss
@@ -383,13 +376,13 @@ export const addToInvestments = function (
 
     const investmentType = existingInvestment(account, targetShareID);
 
+    // Workout the initial value of the investment
+    const initialValue = targetSharePrice * inputValue;
+
     // If investment does not exist
     if (investmentType === false) {
       // Create a new array for this investment
       const newInvestmentArray = new Array(`${targetShareID}`);
-
-      // Workout the initial value of the investment
-      const initialValue = targetSharePrice * inputValue;
 
       // Create new investment object
       /*
@@ -397,7 +390,6 @@ export const addToInvestments = function (
       sharePrice,
       shareTicker,
       numShares,
-      portPercentage,
       initValue,
       curValue,
       gainLoss,
@@ -441,13 +433,21 @@ export const addToInvestments = function (
     if (investmentType === true) {
       // Create new investment object
       const existingInvestment = createInvestment(
+        /*
+      shareName,
+      sharePrice,
+      shareTicker,
+      numShares,
+      initValue,
+      curValue,
+      gainLoss,
+      */
         targetShareName,
         targetSharePrice,
         targetShareID,
         inputValue,
-        100,
+        initialValue,
         2000,
-        2200,
         0.25
       );
 
@@ -524,6 +524,88 @@ export const depositAccount = function (enteredDepositAmount) {
   } else {
     return "error";
   }
+};
+
+// VIEW PORTFOLIO LOGIC
+//
+
+// Loop over individual investments to build an object with the total values
+
+export const buildTallyObject = function (accountPortfolio) {
+  // Empty initial array to store tally objects
+  let tallyArray = [];
+
+  // Loop over portfolio array
+  accountPortfolio.forEach(function (investment) {
+    // Exclude first element of each array (ID Tag), leaving just an array of objects
+    const [tallyID] = investment.splice(0, 1);
+
+    // Workout total tallys
+    const averageSharePrice = investment.reduce(function (
+      totalSharePrice,
+      curSharePrice,
+      n
+    ) {
+      const number = n + 1;
+
+      return (
+        (totalSharePrice.investmentSharePrice +
+          curSharePrice.investmentSharePrice) /
+        number
+      );
+    });
+
+    const tallyNumShares = investment.reduce(function (
+      totalNumShares,
+      curNumShares
+    ) {
+      return totalNumShares.totalNumShares + curNumShares.totalNumShares;
+    });
+
+    const tallyInvested = investment.reduce(function (
+      totalInvestedInit,
+      currentInvestedInit
+    ) {
+      return (
+        totalInvestedInit.investmentInitValue +
+        currentInvestedInit.investmentInitValue
+      );
+    });
+
+    const tallyValue = investment.reduce(function (
+      totalInvestedNow,
+      currentInvestedNow
+    ) {
+      return (
+        totalInvestedNow.investmentCurValue +
+        currentInvestedNow.investmentCurValue
+      );
+    });
+
+    const tallyChange = investment.reduce(function (
+      totalInvestedChange,
+      currentInvestedChange
+    ) {
+      return (
+        totalInvestedChange.investmentGainLoss +
+        currentInvestedChange.investmentGainLoss
+      );
+    });
+
+    // Build an object containing total tallys
+    const tallyObject = {
+      objectID: tallyID,
+      objectAvgSharePrice: averageSharePrice,
+      objectNumShares: tallyNumShares,
+      objectInvested: tallyInvested,
+      objectValue: tallyValue,
+      objectChange: tallyChange,
+    };
+
+    tallyArray.push(tallyObject);
+  });
+  console.log(tallyArray);
+  return tallyArray;
 };
 
 // BOTTOM BAR STATISTICS LOGIC

@@ -6,6 +6,8 @@ import * as viewBottomBar from "./Views/bottomBar.js";
 import * as viewDepositBtn from "./Views/depositBtn.js";
 import * as viewWithdrawBtn from "./Views/withdrawBtn.js";
 import * as viewAccount from "./Views/viewAccount.js";
+import * as viewInvestmentGroup from "./Views/investmentGroup.js";
+import * as viewPortfolio from "./Views/portfolioBtn.js";
 
 const popUp = document.querySelector(".popup");
 const overlay = document.querySelector(".overlay");
@@ -18,6 +20,7 @@ const viewAccountBtn = document.querySelector("#btnAccount");
 const accountBackBtn = document.querySelector(".view-nav-back-icon");
 const movementsBtn = document.querySelector("#btnMovements");
 const tradesBtn = document.querySelector("#btnTrades");
+const portfolioBtn = document.querySelector("#btnPortfolio");
 
 // RENDER INITIAL SHARES CODE
 //
@@ -444,4 +447,37 @@ movementsBtn.addEventListener("click", function () {
   if (modelObject.account1.movementHistory.length > 0) {
     viewAccount.renderAccountMovements(modelObject.account1.movementHistory);
   }
+});
+
+// INVESTMENT GROUP CODE
+//
+
+// Render the portfolio UI
+portfolioBtn.addEventListener("click", function () {
+  // Clear share cards from view
+  viewAccount.clearViewWindow();
+
+  // Render portfolio headings
+  viewPortfolio.renderPortfolioView();
+
+  // Tally up all individual data for group investment cards
+  const tallyObjectArr = modelObject.buildTallyObject(
+    modelObject.account1.portfolio
+  );
+  console.log(tallyObjectArr);
+
+  // Render portfolio in view from account data
+  viewPortfolio.renderGroupInvestment(tallyObjectArr);
+});
+
+const testBtn = document.querySelector(".investment-group-icon");
+const investmentContainer = document.querySelector(".investment-container");
+
+// Reveal individual investments under group investment
+
+testBtn.addEventListener("click", function () {
+  investmentContainer.classList.toggle("smooth-reveal");
+
+  const upChevron = "chevron-small-up";
+  const downChevron = "chevron-small-down";
 });

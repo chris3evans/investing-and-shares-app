@@ -101,6 +101,10 @@ body {
   font-style: bold !important;
 }
 
+.smooth-reveal {
+  display: block !important;
+}
+
 .btn {
   font-size: 2.5rem;
   text-transform: uppercase;
@@ -406,6 +410,63 @@ body {
   border-radius: 0.5rem;
   -webkit-box-shadow: 0rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
           box-shadow: 0rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.investment-container {
+  display: none;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
+  grid-column: 1 / 7;
+}
+
+.individual-investment {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-gap: 2rem;
+  background-color: #f0f0f0;
+  width: 100%;
+  padding: 1.4rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.individual-investment-date {
+  -ms-grid-columns: 1 / 2;
+      grid-template-columns: 1 / 2;
+}
+
+.individual-investment-price {
+  -ms-grid-columns: 2 / 3;
+      grid-template-columns: 2 / 3;
+}
+
+.individual-investment-numshares {
+  -ms-grid-columns: 3 / 4;
+      grid-template-columns: 3 / 4;
+}
+
+.individual-investment-invested {
+  -ms-grid-columns: 4 / 5;
+      grid-template-columns: 4 / 5;
+}
+
+.individual-investment-value {
+  -ms-grid-columns: 5 / 6;
+      grid-template-columns: 5 / 6;
+}
+
+.individual-investment-change {
+  -ms-grid-columns: 6 / 7;
+      grid-template-columns: 6 / 7;
 }
 
 .movement {
