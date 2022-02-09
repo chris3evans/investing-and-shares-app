@@ -15,6 +15,10 @@
   border-radius: 1rem;
   box-shadow: 0rem 0.3rem 1rem rgba(black, 0.3);
 
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+
   &-date {
     grid-template-columns: 1 / 2;
   }

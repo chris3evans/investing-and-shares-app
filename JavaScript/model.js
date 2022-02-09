@@ -546,40 +546,42 @@ export const depositAccount = function (enteredDepositAmount) {
 // VIEW PORTFOLIO LOGIC
 //
 
-// Loop over individual investments to build an object with the total values
+// Loop over group investments to build an object with the total values
 
 export const buildTallyObject = function (accountPortfolio) {
   // Empty initial array to store tally objects
-  let tallyArray = [];
+  const tallyArray = [];
 
   // Loop over portfolio array
   accountPortfolio.forEach(function (investment) {
     // Exclude first element of each array (ID Tag), leaving just an array of objects
-    const [tallyID] = investment.splice(0, 1);
+    const [tallyID] = investment.slice(0, 1);
+
+    const tallyData = investment.slice(1);
 
     // Workout total tallys
-    const averageSharePrice = investment.reduce(function (
+    const averageSharePrice = tallyData.reduce(function (
       totalSharePrice,
       curSharePrice,
       n
     ) {
       const number = n + 1;
 
-      return (
+      return [
         (totalSharePrice.investmentSharePrice +
           curSharePrice.investmentSharePrice) /
-        number
-      );
+          number,
+      ][0];
     });
 
-    const tallyNumShares = investment.reduce(function (
+    const tallyNumShares = tallyData.reduce(function (
       totalNumShares,
       curNumShares
     ) {
       return totalNumShares.totalNumShares + curNumShares.totalNumShares;
     });
 
-    const tallyInvested = investment.reduce(function (
+    const tallyInvested = tallyData.reduce(function (
       totalInvestedInit,
       currentInvestedInit
     ) {
@@ -589,7 +591,7 @@ export const buildTallyObject = function (accountPortfolio) {
       );
     });
 
-    const tallyValue = investment.reduce(function (
+    const tallyValue = tallyData.reduce(function (
       totalInvestedNow,
       currentInvestedNow
     ) {
@@ -599,7 +601,7 @@ export const buildTallyObject = function (accountPortfolio) {
       );
     });
 
-    const tallyChange = investment.reduce(function (
+    const tallyChange = tallyData.reduce(function (
       totalInvestedChange,
       currentInvestedChange
     ) {
@@ -622,6 +624,29 @@ export const buildTallyObject = function (accountPortfolio) {
     tallyArray.push(tallyObject);
   });
   return tallyArray;
+};
+
+// Loop over individual investments and render their data within the individual investment cards
+
+export const buildIndividualInvestmentArray = function (
+  groupInvestmentArray,
+  targetGroupID
+) {
+  // Find the correct investment group array so it's ID can be obtained and used to search the portfolio for the individual investment array
+  const targetGroupArray = groupInvestmentArray.find(function (
+    groupInvestment
+  ) {
+    return groupInvestment.objectID == targetGroupID;
+  });
+
+  // The final array ready for card rendering
+  const individualInvestmentsArray = account1.portfolio
+    .find(function (investment) {
+      return investment[0] === targetGroupArray.objectID;
+    })
+    .slice(1);
+  console.log(individualInvestmentsArray);
+  return individualInvestmentsArray;
 };
 
 // BOTTOM BAR STATISTICS LOGIC

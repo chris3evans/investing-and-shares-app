@@ -439,6 +439,10 @@ body {
           box-shadow: 0rem 0.3rem 1rem rgba(0, 0, 0, 0.3);
 }
 
+.individual-investment:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
 .individual-investment-date {
   -ms-grid-columns: 1 / 2;
       grid-template-columns: 1 / 2;

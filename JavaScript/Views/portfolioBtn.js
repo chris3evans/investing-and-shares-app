@@ -80,8 +80,88 @@ export const renderGroupInvestment = function (groupInvestmentsArray) {
                 </use>
             </svg>
         </div>
+
+        <div class="investment-container" id=${groupInvestment.objectID}>
+        </div>
     </div>
         `
     );
   });
+};
+
+export const renderIndividualInvestments = function (
+  individualArrayInvestments,
+  targetID
+) {
+  const investmentContainerArray = Array.from(
+    document.querySelectorAll(".investment-container")
+  );
+  console.log(investmentContainerArray);
+
+  const targetInvestmentContainer = investmentContainerArray.find(function (
+    investmentContainer
+  ) {
+    return investmentContainer.id === targetID;
+  });
+
+  // Add or remove the reveal class based on the current state
+  targetInvestmentContainer.classList.toggle("smooth-reveal");
+
+  // Clear investment containers content
+  const currentContent = Array.from(targetInvestmentContainer.childNodes);
+
+  // Remove each child element from the array
+  currentContent.forEach(function (content) {
+    content.remove();
+    return;
+  });
+
+  // If the class IS on the investment container, render it
+
+  if (targetInvestmentContainer.classList.contains("smooth-reveal")) {
+    individualArrayInvestments.forEach(function (investment) {
+      targetInvestmentContainer.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="individual-investment">
+            <div class="individual-investment-date">
+                <p class="main-text center-text">
+                21/01/2022
+                </p>
+            </div>
+
+            <div                         class="individual-investment-price">         
+                <p class="main-text center-text">
+                $${investment.investmentSharePrice}
+            </p>
+            </div>
+
+            <div class="individual-investment-numshares">    
+                <p class="main-text center-text">
+                    ${investment.totalNumShares}
+                </p>
+            </div>
+
+            <div class="individual-investment-invested">
+                <p class="main-text center-text">
+                    $${investment.investmentInitValue}
+                </p>
+            </div>
+
+            <div    class="individual-investment-value">         
+                <p class="main-text center-text">
+                    $${investment.investmentCurValue}
+                </p>
+            </div> 
+
+            <div class="individual-investment-change">      
+                <p class="main-text center-text">
+                    $${investment.investmentGainLoss}
+                </p>
+            </div>
+        </div>
+        `
+      );
+    });
+  }
 };
