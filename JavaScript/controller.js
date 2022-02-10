@@ -474,13 +474,6 @@ const investmentContainer = document.querySelector(".investment-container");
 
 // Reveal individual investments under group investment
 
-//testBtn.addEventListener("click", function () {
-//investmentContainer.classList.toggle("smooth-reveal");
-
-//const upChevron = "chevron-small-up";
-//const downChevron = "chevron-small-down";
-//});
-
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("investment-group-icon")) {
     // Find correct investment group (and it's data) and build the array of individual investment objects

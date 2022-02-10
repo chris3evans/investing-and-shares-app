@@ -560,68 +560,59 @@ export const buildTallyObject = function (accountPortfolio) {
     const tallyData = investment.slice(1);
 
     // Workout total tallys
-    const averageSharePrice = tallyData.reduce(function (
-      totalSharePrice,
-      curSharePrice,
-      n
-    ) {
-      const number = n + 1;
+    const averageSharePrice =
+      tallyData
+        .map(function (price) {
+          return price.investmentSharePrice;
+        })
+        .reduce(function (start, price) {
+          return start + price;
+        }) / tallyData.length;
 
-      return [
-        (totalSharePrice.investmentSharePrice +
-          curSharePrice.investmentSharePrice) /
-          number,
-      ][0];
-    });
+    const tallyNumShares = tallyData
+      .map(function (numShares) {
+        return numShares.totalNumShares;
+      })
+      .reduce(function (start, numShares) {
+        return start + numShares;
+      });
 
-    const tallyNumShares = tallyData.reduce(function (
-      totalNumShares,
-      curNumShares
-    ) {
-      return totalNumShares.totalNumShares + curNumShares.totalNumShares;
-    });
+    const tallyInvested = tallyData
+      .map(function (invested) {
+        return invested.investmentInitValue;
+      })
+      .reduce(function (start, invested) {
+        return start + invested;
+      });
 
-    const tallyInvested = tallyData.reduce(function (
-      totalInvestedInit,
-      currentInvestedInit
-    ) {
-      return (
-        totalInvestedInit.investmentInitValue +
-        currentInvestedInit.investmentInitValue
-      );
-    });
+    const tallyValue = tallyData
+      .map(function (now) {
+        return now.investmentCurValue;
+      })
+      .reduce(function (start, now) {
+        return start + now;
+      });
 
-    const tallyValue = tallyData.reduce(function (
-      totalInvestedNow,
-      currentInvestedNow
-    ) {
-      return (
-        totalInvestedNow.investmentCurValue +
-        currentInvestedNow.investmentCurValue
-      );
-    });
-
-    const tallyChange = tallyData.reduce(function (
-      totalInvestedChange,
-      currentInvestedChange
-    ) {
-      return (
-        totalInvestedChange.investmentGainLoss +
-        currentInvestedChange.investmentGainLoss
-      );
-    });
+    const tallyChange = tallyData
+      .map(function (change) {
+        return change.investmentGainLoss;
+      })
+      .reduce(function (start, change) {
+        return start + change;
+      });
 
     // Build an object containing total tallys
     const tallyObject = {
       objectID: tallyID,
-      objectAvgSharePrice: averageSharePrice,
-      objectNumShares: tallyNumShares,
-      objectInvested: tallyInvested,
-      objectValue: tallyValue,
-      objectChange: tallyChange,
+      objectAvgSharePrice: averageSharePrice.toFixed(2),
+      objectNumShares: tallyNumShares.toFixed(2),
+      objectInvested: tallyInvested.toFixed(2),
+      objectValue: tallyValue.toFixed(2),
+      objectChange: tallyChange.toFixed(2),
     };
 
     tallyArray.push(tallyObject);
+    return;
   });
   return tallyArray;
 };

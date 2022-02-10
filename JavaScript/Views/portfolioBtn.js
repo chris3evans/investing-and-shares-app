@@ -96,7 +96,6 @@ export const renderIndividualInvestments = function (
   const investmentContainerArray = Array.from(
     document.querySelectorAll(".investment-container")
   );
-  console.log(investmentContainerArray);
 
   const targetInvestmentContainer = investmentContainerArray.find(function (
     investmentContainer
