@@ -75,8 +75,13 @@ export const renderGroupInvestment = function (groupInvestmentsArray) {
         </div>
 
         <div class="investment-group-button">
-            <svg class="investment-group-icon">
+            <svg class="investment-group-icon chevron-down">
                 <use xlink:href="CSS/chevrons.svg#icon-chevron-small-down">
+                </use>
+            </svg>
+
+            <svg class="investment-group-icon chevron-up icon-contract">
+                <use xlink:href="CSS/chevrons.svg#icon-chevron-small-up">
                 </use>
             </svg>
         </div>
@@ -163,4 +168,12 @@ export const renderIndividualInvestments = function (
       );
     });
   }
+};
+
+export const changeChevron = function () {
+  const upChevron = document.querySelector(".chevron-up");
+  const downChevron = document.querySelector(".chevron-down");
+
+  upChevron.classList.toggle("icon-contract");
+  downChevron.classList.toggle("icon-contract");
 };

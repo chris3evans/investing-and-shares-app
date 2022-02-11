@@ -105,6 +105,10 @@ body {
   display: block !important;
 }
 
+.icon-contract {
+  display: none !important;
+}
+
 .btn {
   font-size: 2.5rem;
   text-transform: uppercase;

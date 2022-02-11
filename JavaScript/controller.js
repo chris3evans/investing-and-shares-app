@@ -476,6 +476,8 @@ const investmentContainer = document.querySelector(".investment-container");
 
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("investment-group-icon")) {
+    const icon = e.target;
+
     // Find correct investment group (and it's data) and build the array of individual investment objects
     const targetGroupID = e.target.closest(".investment-group").id;
     console.log(targetGroupID);
@@ -495,6 +497,7 @@ document.addEventListener("click", function (e) {
       targetGroupID
     );
 
-    // Reveal the newly rendered investment cards
+    // Change the chevron direction
+    viewPortfolio.changeChevron();
   }
 });
