@@ -7,6 +7,7 @@ import * as viewDepositBtn from "./Views/depositBtn.js";
 import * as viewWithdrawBtn from "./Views/withdrawBtn.js";
 import * as viewAccount from "./Views/viewAccount.js";
 import * as viewInvestmentGroup from "./Views/investmentGroup.js";
+import * as viewInvestmentIndividual from "./Views/investmentIndividual.js";
 import * as viewPortfolio from "./Views/portfolioBtn.js";
 
 const popUp = document.querySelector(".popup");
@@ -466,21 +467,16 @@ portfolioBtn.addEventListener("click", function () {
   );
 
   // Render group investment cards in portfolio view from account data
-  viewPortfolio.renderGroupInvestment(tallyObjectArr);
+  viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
 });
 
-const testBtn = document.querySelector(".investment-group-icon");
-const investmentContainer = document.querySelector(".investment-container");
-
 // Reveal individual investments under group investment
-
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("investment-group-icon")) {
-    const icon = e.target;
+    const targetIcon = e.target.closest(".investment-group-button");
 
     // Find correct investment group (and it's data) and build the array of individual investment objects
     const targetGroupID = e.target.closest(".investment-group").id;
-    console.log(targetGroupID);
     const groupInvestmentArray = modelObject.buildTallyObject(
       modelObject.account1.portfolio
     );
@@ -492,12 +488,12 @@ document.addEventListener("click", function (e) {
       );
 
     // Render this data in individual investment cards
-    viewPortfolio.renderIndividualInvestments(
+    viewInvestmentIndividual.renderIndividualInvestments(
       individualInvestmentsArray,
       targetGroupID
     );
 
     // Change the chevron direction
-    viewPortfolio.changeChevron();
+    viewInvestmentGroup.changeChevron(targetIcon);
   }
 });

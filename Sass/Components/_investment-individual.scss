@@ -5,13 +5,12 @@
 
 .individual-investment {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr) min-content;
   align-items: center;
   justify-content: space-between;
-  grid-gap: 2rem;
   background-color: $color-grey;
   width: 100%;
-  padding: 1.4rem;
+  padding: 1.4rem 0rem;
   border-radius: 1rem;
   box-shadow: 0rem 0.3rem 1rem rgba(black, 0.3);
 
@@ -41,5 +40,9 @@
 
   &-change {
     grid-template-columns: 6 / 7;
+  }
+
+  &-sell {
+    grid-template-columns: 7 / 8;
   }
 }
