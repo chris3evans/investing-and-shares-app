@@ -419,8 +419,8 @@ body {
 .investment-container {
   display: none;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 6;
-  grid-column: 1 / 7;
+  -ms-grid-column-span: 7;
+  grid-column: 1 / 8;
 }
 
 .individual-investment {
@@ -436,6 +436,7 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   background-color: #f0f0f0;
+  grid-gap: 2rem;
   width: 100%;
   padding: 1.4rem 0rem;
   border-radius: 1rem;
@@ -480,6 +481,13 @@ body {
 .individual-investment-sell {
   -ms-grid-columns: 7 / 8;
       grid-template-columns: 7 / 8;
+}
+
+.individual-investment-icon {
+  height: 2rem;
+  width: 2rem;
+  fill: black;
+  cursor: pointer;
 }
 
 .movement {
@@ -591,6 +599,37 @@ body {
   height: 2rem;
   width: 2rem;
   fill: white;
+}
+
+.sell-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (min-content)[2];
+      grid-template-rows: repeat(2, -webkit-min-content);
+      grid-template-rows: repeat(2, min-content);
+  grid-row-gap: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4rem;
+}
+
+.sell-text {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+.sell-buttons {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .share {

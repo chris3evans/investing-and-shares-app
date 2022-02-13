@@ -72,6 +72,12 @@ export const renderIndividualInvestments = function (
               $${investment.investmentGainLoss.toFixed(2)}
             </p>
           </div>
+
+          <div class="individual-investment-sell">
+            <svg class="individual-investment-icon">
+              <use xlink:href="CSS/close-sprite.svg#icon-cross"></use>
+            </svg>
+          </div>
         </div>
         `
       );

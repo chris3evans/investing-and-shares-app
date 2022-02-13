@@ -401,8 +401,8 @@ export const addToInvestments = function (
         targetShareID,
         inputValue,
         initialValue,
-        2200,
-        0.25
+        2000,
+        2000 - initialValue
       );
 
       // Add first investment object to new investment array
@@ -448,7 +448,7 @@ export const addToInvestments = function (
         inputValue,
         initialValue,
         2000,
-        0.25
+        2000 - initialValue
       );
 
       // Find correct investment array
@@ -636,7 +636,6 @@ export const buildIndividualInvestmentArray = function (
       return investment[0] === targetGroupArray.objectID;
     })
     .slice(1);
-  console.log(individualInvestmentsArray);
   return individualInvestmentsArray;
 };
 

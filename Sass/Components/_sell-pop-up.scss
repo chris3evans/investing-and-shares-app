@@ -1,0 +1,19 @@
+.sell {
+  &-container {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    grid-row-gap: 4rem;
+    align-items: center;
+    padding: 4rem;
+  }
+
+  &-text {
+    grid-row: 1 / 2;
+  }
+
+  &-buttons {
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

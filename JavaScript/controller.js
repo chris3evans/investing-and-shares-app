@@ -9,6 +9,7 @@ import * as viewAccount from "./Views/viewAccount.js";
 import * as viewInvestmentGroup from "./Views/investmentGroup.js";
 import * as viewInvestmentIndividual from "./Views/investmentIndividual.js";
 import * as viewPortfolio from "./Views/portfolioBtn.js";
+import * as viewSellPopUp from "./Views/sellPopUp.js";
 
 const popUp = document.querySelector(".popup");
 const overlay = document.querySelector(".overlay");
@@ -93,6 +94,7 @@ const closeViewMorePopUp = function () {
   viewBuyPopUp.clearPurchase();
   viewDepositBtn.clearDepositPopup();
   viewWithdrawBtn.clearWithdrawPopUp();
+  viewSellPopUp.clearSellPopUp();
 };
 
 // via Escape key
@@ -495,5 +497,17 @@ document.addEventListener("click", function (e) {
 
     // Change the chevron direction
     viewInvestmentGroup.changeChevron(targetIcon);
+  }
+});
+
+// Selling individual investments
+document.addEventListener("click", function (e) {
+  // When the sell icon is clicked
+  if (e.target.classList.contains("individual-investment-icon")) {
+    console.log("hello");
+
+    // Clear the pop ups content and re-render it with sell content
+    viewMorePopUp.showViewMore();
+    viewSellPopUp.renderSellPopUp();
   }
 });
