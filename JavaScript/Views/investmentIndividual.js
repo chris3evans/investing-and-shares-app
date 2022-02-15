@@ -36,7 +36,9 @@ export const renderIndividualInvestments = function (
       targetInvestmentContainer.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="individual-investment">
+        <div class="individual-investment ${investment.investmentTicker}" id="${
+          investment.investmentID
+        }">
           <div class="individual-investment-date">
             <p class="main-text center-text">
               21/01/2022

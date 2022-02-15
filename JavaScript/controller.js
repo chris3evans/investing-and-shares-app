@@ -504,10 +504,44 @@ document.addEventListener("click", function (e) {
 document.addEventListener("click", function (e) {
   // When the sell icon is clicked
   if (e.target.classList.contains("individual-investment-icon")) {
-    console.log("hello");
-
-    // Clear the pop ups content and re-render it with sell content
+    // Clear the pop ups content
     viewMorePopUp.showViewMore();
-    viewSellPopUp.renderSellPopUp();
+
+    // Render the sell pop up UI
+
+    // Stock ticker - locate correct group investment
+    const targetInvestmentTicker = Array.from(
+      e.target.closest(".individual-investment").classList
+    )[1];
+    console.log(targetInvestmentTicker);
+
+    // ID of clicked investment - locate correct individual investment
+    const targetInvestmentID = +e.target.closest(".individual-investment").id;
+    console.log(targetInvestmentID);
+
+    // Use ticker and ID to find the correct data in the account's portfolio
+    const targetInvestmentData = modelObject.account1.portfolio
+      .find(function (groupInvestment) {
+        return groupInvestment[0] === targetInvestmentTicker;
+      })
+      .slice(1)
+      .find(function (individualInvestment) {
+        return individualInvestment.investmentID === targetInvestmentID;
+      });
+    console.log(targetInvestmentData);
+
+    viewSellPopUp.renderSellPopUp(targetInvestmentData);
+
+    // Delete individual investment object from that array
+
+    // Re-render the current view
+  }
+});
+
+// Close sell pop up button
+document.addEventListener("click", function (e) {
+  // When no-sell button is clicked
+  if (e.target.id === "btn-deny-sell") {
+    closeViewMorePopUp();
   }
 });

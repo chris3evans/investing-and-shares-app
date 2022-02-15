@@ -1,12 +1,16 @@
 const navigation = document.querySelector(".details-navigation");
 const backBtn = document.querySelector(".details-back-icon");
 
-export const renderSellPopUp = function () {
+export const renderSellPopUp = function (investmentData) {
+  const gainLoss = investmentData.investmentGainLoss;
+
+  const text = gainLoss > 0 ? `$${gainLoss} profit` : `$${gainLoss} loss`;
+
   const sellPopUpHtml = `
   <div class="sell">
     <div class="sell-container">
         <div class="sell-text">
-            <h3 class="heading-3">Close this position for $300 profit?</h3>
+            <h3 class="heading-3">Close this position for ${text}?</h3>
         </div>
 
         <div class="sell-buttons">

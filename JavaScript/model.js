@@ -215,7 +215,8 @@ class Investment {
     //portPercentage,
     investmentInitValue,
     investmentCurValue,
-    investmentGainLoss
+    investmentGainLoss,
+    investmentID
   ) {
     this.investmentShareName = investmentShareName;
     this.investmentSharePrice = investmentSharePrice;
@@ -225,6 +226,7 @@ class Investment {
     this.investmentInitValue = investmentInitValue;
     this.investmentCurValue = investmentCurValue;
     this.investmentGainLoss = investmentGainLoss;
+    this.investmentID = investmentID;
   }
 }
 
@@ -319,7 +321,8 @@ export const createInvestment = function (
   numShares,
   initValue,
   curValue,
-  gainLoss
+  gainLoss,
+  investmentID
 ) {
   const newInvestment = new Investment(
     shareName,
@@ -328,7 +331,8 @@ export const createInvestment = function (
     numShares,
     initValue,
     curValue,
-    gainLoss
+    gainLoss,
+    investmentID
   );
 
   return newInvestment;
@@ -379,6 +383,9 @@ export const addToInvestments = function (
     // Workout the initial value of the investment
     const initialValue = targetSharePrice * inputValue;
 
+    // Unique ID to identify each purchase of shares
+    const uniqueID = Math.floor(Math.random() * 10000000);
+
     // If investment does not exist
     if (investmentType === false) {
       // Create a new array for this investment
@@ -394,6 +401,7 @@ export const addToInvestments = function (
       curValue,
       gainLoss,
       */
+
       const newInvestment = createInvestment(
         //modelObject.account1,
         targetShareName,
@@ -402,7 +410,8 @@ export const addToInvestments = function (
         inputValue,
         initialValue,
         2000,
-        2000 - initialValue
+        2000 - initialValue,
+        uniqueID
       );
 
       // Add first investment object to new investment array
@@ -441,6 +450,7 @@ export const addToInvestments = function (
       initValue,
       curValue,
       gainLoss,
+      investmentID
       */
         targetShareName,
         targetSharePrice,
@@ -448,7 +458,8 @@ export const addToInvestments = function (
         inputValue,
         initialValue,
         2000,
-        2000 - initialValue
+        2000 - initialValue,
+        uniqueID
       );
 
       // Find correct investment array
@@ -636,6 +647,7 @@ export const buildIndividualInvestmentArray = function (
       return investment[0] === targetGroupArray.objectID;
     })
     .slice(1);
+  console.log(individualInvestmentsArray);
   return individualInvestmentsArray;
 };
 
