@@ -647,8 +647,55 @@ export const buildIndividualInvestmentArray = function (
       return investment[0] === targetGroupArray.objectID;
     })
     .slice(1);
-  console.log(individualInvestmentsArray);
   return individualInvestmentsArray;
+};
+
+// Delete an (individual) investment object from the account's data
+export const sellIndividualInvestment = function (ticker, ID) {
+  // The target array
+  const deleteTargetArr = account1.portfolio.find(function (groupInvestment) {
+    return groupInvestment[0] === ticker;
+  });
+
+  // Index of the target array
+  const deleteTargetArrIndex = account1.portfolio.indexOf(deleteTargetArr);
+
+  // The target element in that array
+  const deleteTarget = account1.portfolio
+    .find(function (groupInvestment) {
+      return groupInvestment[0] === ticker;
+    })
+    .slice(1)
+    .find(function (individualInvestment) {
+      return individualInvestment.investmentID === ID;
+    });
+
+  // Index number of array element to be removed
+  const deleteTargetIndex = deleteTargetArr.indexOf(deleteTarget);
+
+  // If only one investment exists in the entire share
+  if (deleteTargetArr.length === 2) {
+    // Delete the array as a who;e
+    account1.portfolio.splice(deleteTargetArrIndex, 1);
+    return "single";
+  }
+  if (deleteTargetArr.length > 2) {
+    // Remove the corresponding array element
+    deleteTargetArr.splice(deleteTargetIndex, 1);
+    console.log(account1.portfolio);
+    return "multiple";
+  }
+
+  // Update the account's trade history
+  const curDate = recordDate();
+
+  account1.tradeHistory.push({
+    date: curDate,
+    name: deleteTarget.investmentTicker,
+    type: "Sale",
+    value: deleteTarget.investmentSharePrice,
+    shares: deleteTarget.totalNumShares,
+  });
 };
 
 // BOTTOM BAR STATISTICS LOGIC

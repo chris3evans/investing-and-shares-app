@@ -455,6 +455,8 @@ movementsBtn.addEventListener("click", function () {
 // INVESTMENT GROUP CODE
 //
 
+let tallyObjectArr = "";
+
 // Render the portfolio UI
 portfolioBtn.addEventListener("click", function () {
   // Clear share cards from view
@@ -464,13 +466,14 @@ portfolioBtn.addEventListener("click", function () {
   viewPortfolio.renderPortfolioView();
 
   // Tally up all individual data to render on group investment cards
-  const tallyObjectArr = modelObject.buildTallyObject(
-    modelObject.account1.portfolio
-  );
+  tallyObjectArr = modelObject.buildTallyObject(modelObject.account1.portfolio);
 
   // Render group investment cards in portfolio view from account data
   viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
 });
+
+let targetGroupID = "";
+let individualInvestmentsArray = "";
 
 // Reveal individual investments under group investment
 document.addEventListener("click", function (e) {
@@ -478,16 +481,15 @@ document.addEventListener("click", function (e) {
     const targetIcon = e.target.closest(".investment-group-button");
 
     // Find correct investment group (and it's data) and build the array of individual investment objects
-    const targetGroupID = e.target.closest(".investment-group").id;
+    targetGroupID = e.target.closest(".investment-group").id;
     const groupInvestmentArray = modelObject.buildTallyObject(
       modelObject.account1.portfolio
     );
 
-    const individualInvestmentsArray =
-      modelObject.buildIndividualInvestmentArray(
-        groupInvestmentArray,
-        targetGroupID
-      );
+    individualInvestmentsArray = modelObject.buildIndividualInvestmentArray(
+      groupInvestmentArray,
+      targetGroupID
+    );
 
     // Render this data in individual investment cards
     viewInvestmentIndividual.renderIndividualInvestments(
@@ -500,6 +502,9 @@ document.addEventListener("click", function (e) {
   }
 });
 
+let targetInvestmentTicker = "";
+let targetInvestmentID = "";
+
 // Selling individual investments
 document.addEventListener("click", function (e) {
   // When the sell icon is clicked
@@ -510,14 +515,12 @@ document.addEventListener("click", function (e) {
     // Render the sell pop up UI
 
     // Stock ticker - locate correct group investment
-    const targetInvestmentTicker = Array.from(
+    targetInvestmentTicker = Array.from(
       e.target.closest(".individual-investment").classList
     )[1];
-    console.log(targetInvestmentTicker);
 
     // ID of clicked investment - locate correct individual investment
-    const targetInvestmentID = +e.target.closest(".individual-investment").id;
-    console.log(targetInvestmentID);
+    targetInvestmentID = +e.target.closest(".individual-investment").id;
 
     // Use ticker and ID to find the correct data in the account's portfolio
     const targetInvestmentData = modelObject.account1.portfolio
@@ -528,13 +531,47 @@ document.addEventListener("click", function (e) {
       .find(function (individualInvestment) {
         return individualInvestment.investmentID === targetInvestmentID;
       });
-    console.log(targetInvestmentData);
 
     viewSellPopUp.renderSellPopUp(targetInvestmentData);
+  }
+});
 
+// Carry out the investment sale
+document.addEventListener("click", function (e) {
+  if (e.target.id === "btn-confirm-sell") {
     // Delete individual investment object from that array
+    const renderResult = modelObject.sellIndividualInvestment(
+      targetInvestmentTicker,
+      targetInvestmentID
+    );
+    console.log(renderResult);
 
-    // Re-render the current view
+    // If it is the only existing investment
+    if (renderResult === "single") {
+      // Clear share cards from view
+      viewAccount.clearViewWindow();
+
+      // Render portfolio headings
+      viewPortfolio.renderPortfolioView();
+
+      // Render group investment cards in portfolio view from account data
+      //viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
+    }
+
+    // If there are other existing investments
+    if (renderResult === "multiple") {
+      // Clear share cards from view
+      viewAccount.clearViewWindow();
+
+      // Render portfolio headings
+      viewPortfolio.renderPortfolioView();
+
+      // Re-render the current investments view
+      viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
+    }
+
+    // Close the sell pop up
+    closeViewMorePopUp();
   }
 });
 

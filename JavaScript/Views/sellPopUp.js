@@ -2,7 +2,7 @@ const navigation = document.querySelector(".details-navigation");
 const backBtn = document.querySelector(".details-back-icon");
 
 export const renderSellPopUp = function (investmentData) {
-  const gainLoss = investmentData.investmentGainLoss;
+  const gainLoss = investmentData.investmentGainLoss.toFixed(2);
 
   const text = gainLoss > 0 ? `$${gainLoss} profit` : `$${gainLoss} loss`;
 
