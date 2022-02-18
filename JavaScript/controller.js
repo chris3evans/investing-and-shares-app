@@ -570,6 +570,9 @@ document.addEventListener("click", function (e) {
       viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
     }
 
+    // Update bottom bar statistics
+    updateBottomBar();
+
     // Close the sell pop up
     closeViewMorePopUp();
   }

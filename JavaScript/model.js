@@ -673,6 +673,28 @@ export const sellIndividualInvestment = function (ticker, ID) {
   // Index number of array element to be removed
   const deleteTargetIndex = deleteTargetArr.indexOf(deleteTarget);
 
+  // Update the account's trade history
+  const curDate = recordDate();
+
+  account1.tradeHistory.push({
+    date: curDate,
+    name: deleteTarget.investmentTicker,
+    type: "Sale",
+    value: deleteTarget.investmentSharePrice,
+    shares: deleteTarget.totalNumShares,
+  });
+
+  // Update the bottom bar statistics data
+  console.log(deleteTarget);
+  account1.fundsAvailable =
+    account1.fundsAvailable + deleteTarget.investmentCurValue;
+
+  account1.fundsInvested =
+    account1.fundsInvested -
+    deleteTarget.investmentSharePrice * deleteTarget.totalNumShares;
+
+  //account1.netLossGain = account1.netLossGain - deleteTarget.investmentGainLoss;
+
   // If only one investment exists in the entire share
   if (deleteTargetArr.length === 2) {
     // Delete the array as a who;e
@@ -685,17 +707,6 @@ export const sellIndividualInvestment = function (ticker, ID) {
     console.log(account1.portfolio);
     return "multiple";
   }
-
-  // Update the account's trade history
-  const curDate = recordDate();
-
-  account1.tradeHistory.push({
-    date: curDate,
-    name: deleteTarget.investmentTicker,
-    type: "Sale",
-    value: deleteTarget.investmentSharePrice,
-    shares: deleteTarget.totalNumShares,
-  });
 };
 
 // BOTTOM BAR STATISTICS LOGIC
