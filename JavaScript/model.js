@@ -685,7 +685,6 @@ export const sellIndividualInvestment = function (ticker, ID) {
   });
 
   // Update the bottom bar statistics data
-  console.log(deleteTarget);
   account1.fundsAvailable =
     account1.fundsAvailable + deleteTarget.investmentCurValue;
 
@@ -704,7 +703,6 @@ export const sellIndividualInvestment = function (ticker, ID) {
   if (deleteTargetArr.length > 2) {
     // Remove the corresponding array element
     deleteTargetArr.splice(deleteTargetIndex, 1);
-    console.log(account1.portfolio);
     return "multiple";
   }
 };

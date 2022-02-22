@@ -566,6 +566,11 @@ document.addEventListener("click", function (e) {
       // Render portfolio headings
       viewPortfolio.renderPortfolioView();
 
+      // Tally up all individual data to render on group investment cards
+      tallyObjectArr = modelObject.buildTallyObject(
+        modelObject.account1.portfolio
+      );
+
       // Re-render the current investments view
       viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
     }
