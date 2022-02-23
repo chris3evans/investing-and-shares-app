@@ -462,6 +462,9 @@ portfolioBtn.addEventListener("click", function () {
   // Clear share cards from view
   viewAccount.clearViewWindow();
 
+  // Render portfolio navigation
+  viewPortfolio.renderPortfolioNavigation();
+
   // Render portfolio headings
   viewPortfolio.renderPortfolioView();
 

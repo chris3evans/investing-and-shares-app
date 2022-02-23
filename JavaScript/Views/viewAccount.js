@@ -1,9 +1,13 @@
 const accountNavigation = document.querySelector(".view-nav");
 const mainViewContainer = document.querySelector(".view-container");
+const navLeft = document.querySelector(".view-nav-left");
+const navRight = document.querySelector(".view-nav-right");
 
 // Reveal the navigation options for viewing account
 export const renderAccountNavigation = function () {
   accountNavigation.classList.remove("hidden");
+  navLeft.classList.remove("hidden");
+  navRight.classList.remove("hidden");
 };
 
 // Hide the navigation options for viewing account

@@ -1,4 +1,6 @@
 const mainViewContainer = document.querySelector(".view-container");
+const accountNavigation = document.querySelector(".view-nav");
+const nullNavigation = document.querySelector(".view-nav-right");
 
 export const renderPortfolioView = function () {
   // Render portfolio container and headings
@@ -39,4 +41,9 @@ export const renderPortfolioView = function () {
   `;
 
   mainViewContainer.insertAdjacentHTML("beforeend", portfolioHtml);
+};
+
+export const renderPortfolioNavigation = function () {
+  accountNavigation.classList.remove("hidden");
+  nullNavigation.classList.add("hidden");
 };
