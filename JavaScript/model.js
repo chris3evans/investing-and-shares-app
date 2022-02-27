@@ -1,79 +1,9 @@
-/*https://api.stockdata.org/v1/data/quote?symbols=AAPL%2CTSLA%2CMSFT&api_token=seOqbX0SsFtFXcPVRPL28UfKEzVFF5z8NqGpLuSz*/
-
-//seOqbX0SsFtFXcPVRPL28UfKEzVFF5z8NqGpLuSz
-// ["O", "ADM", "PG", "KO", "SPG"]
-
-/*MOCK DATA
-[
-        {
-            "ticker": "TSLA",
-            "name": "Tesla Inc",
-            "exchange_short": "NASDAQ",
-            "exchange_long": "NASDAQ Stock Exchange",
-            "mic_code": "XNAS",
-            "currency": "USD",
-            "price": 1107.72,
-            "day_high": 1109.44,
-            "day_low": 1072.8,
-            "day_open": 1078.33,
-            "52_week_high": 1243.49,
-            "52_week_low": 539.49,
-            "market_cap": 1062627573760,
-            "previous_close_price": 1064.45,
-            "previous_close_price_time": "2022-01-11T15:59:56.000000",
-            "day_change": 3.91,
-            "volume": 417787,
-            "is_extended_hours_price": false,
-            "last_trade_time": "2022-01-12T14:30:09.000000"
-        },
-        {
-            "ticker": "AAPL",
-            "name": "Apple Inc",
-            "exchange_short": "NASDAQ",
-            "exchange_long": "NASDAQ Stock Exchange",
-            "mic_code": "XNAS",
-            "currency": "USD",
-            "price": 175.74,
-            "day_high": 177.15,
-            "day_low": 174.87,
-            "day_open": 176.39,
-            "52_week_high": 182.94,
-            "52_week_low": 116.21,
-            "market_cap": 2825018146816,
-            "previous_close_price": 174.93,
-            "previous_close_price_time": "2022-01-11T15:59:58.000000",
-            "day_change": 0.46,
-            "volume": 416207,
-            "is_extended_hours_price": false,
-            "last_trade_time": "2022-01-12T14:30:05.000000"
-        },
-        {
-            "ticker": "V",
-            "name": "Visa Inc",
-            "exchange_short": "NYSE",
-            "exchange_long": "New York Stock Exchange",
-            "mic_code": "XNYS",
-            "currency": "USD",
-            "price": 216.3,
-            "day_high": 217.56,
-            "day_low": 213.9,
-            "day_open": 215.05,
-            "52_week_high": 252.67,
-            "52_week_low": 190.1,
-            "market_cap": null,
-            "previous_close_price": 214.3,
-            "previous_close_price_time": "2022-01-11T15:59:57.000000",
-            "day_change": 0.92,
-            "volume": 190382,
-            "is_extended_hours_price": false,
-            "last_trade_time": "2022-01-12T14:29:52.000000"
-        }
-    ]
-*/
+// API CODE
+//
 
 //  seOqbX0SsFtFXcPVRPL28UfKEzVFF5z8NqGpLuSz
 
-/*const stocks = ["AAPL", "V"];
+const stocks = ["O", "PG", "AAPL"];
 
 // Function to format the API string
 const adjustAPIKey = function (stockArray) {
@@ -82,15 +12,16 @@ const adjustAPIKey = function (stockArray) {
 };
 
 // Formatted string ready to be used in the API call
-const APIString = adjustAPIKey(stocks);
+export const APIString = adjustAPIKey(stocks);
 
 // Function to make an AJAX call and return an array of stock objects
 export const getStockData = async function (shares) {
   try {
     // AJAX call to API requesting data
     const data = await fetch(
-      `https://api.stockdata.org/v1/data/quote?symbols=AAPL,MSFT,FB&api_token=seOqbX0SsFtFXcPVRPL28UfKEzVFF5z8NqGpLuSz`
+      `https://api.stockdata.org/v1/data/quote?symbols=${shares}&api_token=seOqbX0SsFtFXcPVRPL28UfKEzVFF5z8NqGpLuSz`
     );
+
     // Object containing array of all requested stocks
     const dataObject = await data.json();
 
@@ -101,75 +32,6 @@ export const getStockData = async function (shares) {
     console.error(error);
   }
 };
-
-// An array of stocks, one object for each share stock requested
-export const stocksArray = getStockData(APIString);*/
-
-export const testData = [
-  {
-    ticker: "TSLA",
-    name: "Tesla Inc",
-    exchange_short: "NASDAQ",
-    exchange_long: "NASDAQ Stock Exchange",
-    mic_code: "XNAS",
-    currency: "USD",
-    price: 1107.72,
-    day_high: 1109.44,
-    day_low: 1072.8,
-    day_open: 1078.33,
-    "52_week_high": 1243.49,
-    "52_week_low": 539.49,
-    market_cap: 1062627573760,
-    previous_close_price: 1064.45,
-    previous_close_price_time: "2022-01-11T15:59:56.000000",
-    day_change: 3.91,
-    volume: 417787,
-    is_extended_hours_price: false,
-    last_trade_time: "2022-01-12T14:30:09.000000",
-  },
-  {
-    ticker: "AAPL",
-    name: "Apple Inc",
-    exchange_short: "NASDAQ",
-    exchange_long: "NASDAQ Stock Exchange",
-    mic_code: "XNAS",
-    currency: "USD",
-    price: 175.74,
-    day_high: 177.15,
-    day_low: 174.87,
-    day_open: 176.39,
-    "52_week_high": 182.94,
-    "52_week_low": 116.21,
-    market_cap: 2825018146816,
-    previous_close_price: 174.93,
-    previous_close_price_time: "2022-01-11T15:59:58.000000",
-    day_change: 0.46,
-    volume: 416207,
-    is_extended_hours_price: false,
-    last_trade_time: "2022-01-12T14:30:05.000000",
-  },
-  {
-    ticker: "V",
-    name: "Visa Inc",
-    exchange_short: "NYSE",
-    exchange_long: "New York Stock Exchange",
-    mic_code: "XNYS",
-    currency: "USD",
-    price: 216.3,
-    day_high: 217.56,
-    day_low: 213.9,
-    day_open: 215.05,
-    "52_week_high": 252.67,
-    "52_week_low": 190.1,
-    market_cap: 452150000000,
-    previous_close_price: 214.3,
-    previous_close_price_time: "2022-01-11T15:59:57.000000",
-    day_change: 0.92,
-    volume: 190382,
-    is_extended_hours_price: false,
-    last_trade_time: "2022-01-12T14:29:52.000000",
-  },
-];
 
 // Function to record date
 const recordDate = function () {
@@ -184,26 +46,18 @@ const recordDate = function () {
 
 // Stores data at the account level
 class Account {
-  constructor(
-    accountName,
-    fundsAvailable,
-    fundsInvested,
-    netLossGain,
-    portValue
-  ) {
+  constructor(accountName, fundsAvailable, fundsInvested) {
     this.accountName = accountName;
     this.portfolio = [];
     this.fundsAvailable = fundsAvailable;
     this.fundsInvested = fundsInvested;
-    this.netLossGain = netLossGain;
-    this.portValue = portValue;
     this.currency = ["USD", "$"];
     this.movementHistory = [];
     this.tradeHistory = [];
   }
 }
 
-export const account1 = new Account("Chris Evans", 10000, 0, 0, 12750);
+export const account1 = new Account("Chris Evans", 0, 0);
 
 // The array elments for the "Account" class' portfolio array
 class Investment {
@@ -212,40 +66,25 @@ class Investment {
     investmentSharePrice,
     investmentTicker,
     totalNumShares,
-    //portPercentage,
     investmentInitValue,
-    investmentCurValue,
-    investmentGainLoss,
     investmentID
   ) {
     this.investmentShareName = investmentShareName;
     this.investmentSharePrice = investmentSharePrice;
     this.investmentTicker = investmentTicker;
     this.totalNumShares = +totalNumShares;
-    //this.portPercentage = portPercentage;
     this.investmentInitValue = investmentInitValue;
-    this.investmentCurValue = investmentCurValue;
-    this.investmentGainLoss = investmentGainLoss;
     this.investmentID = investmentID;
   }
 }
 
 // The array elements for the "Investments" class' trades array
 class Trade {
-  constructor(
-    shareName,
-    sharePrice,
-    numShares,
-    tradeValueInit,
-    tradeValueCur,
-    tradeGainLoss
-  ) {
+  constructor(shareName, sharePrice, numShares, tradeValueInit) {
     this.shareName = shareName;
     this.sharePrice = sharePrice;
     this.numShares = numShares;
     this.tradeValueInit = tradeValueInit;
-    this.tradeValueCur = tradeValueCur;
-    this.tradeGainLoss = tradeGainLoss;
   }
 }
 
@@ -262,35 +101,7 @@ export const checkFunds = function (fundsAvailable, numShares, sharePrice) {
   return result;
 };
 
-const check = checkFunds(2500, 250, 9);
-
-// Function to workout funds used, when purchasing by units
-export const calcFundsToBeUsed = function (fundCheck, unitInput, sharePrice) {
-  if (fundCheck === "approved") {
-    const numFunds = unitInput * sharePrice;
-  } else {
-    console.log("Purchase rejected: not enough funds!");
-  }
-};
-export const testUnitsValue = calcFundsToBeUsed(check, 9, 250);
-
-// Function to workout units bought, when purchasing by funds
-export const calcSharesToBeBought = function (
-  fundCheck,
-  fundInput,
-  sharePrice
-) {
-  if (fundCheck === "approved") {
-    const numShares = fundInput / sharePrice;
-  } else {
-    console.log("Purchase3 rejected: add more funds!");
-  }
-};
-export const testFundsValue = calcSharesToBeBought(check, 2250, 250);
-
-// Selecting to buy by units
-
-// Selecting to buy by funds
+// const check = checkFunds(2500, 250, 9);
 
 // PURCHASE EVENT LOGIC
 //
@@ -320,8 +131,6 @@ export const createInvestment = function (
   shareTicker,
   numShares,
   initValue,
-  curValue,
-  gainLoss,
   investmentID
 ) {
   const newInvestment = new Investment(
@@ -330,8 +139,6 @@ export const createInvestment = function (
     shareTicker,
     numShares,
     initValue,
-    curValue,
-    gainLoss,
     investmentID
   );
 
@@ -398,8 +205,7 @@ export const addToInvestments = function (
       shareTicker,
       numShares,
       initValue,
-      curValue,
-      gainLoss,
+      investmentID
       */
 
       const newInvestment = createInvestment(
@@ -409,8 +215,6 @@ export const addToInvestments = function (
         targetShareID,
         inputValue,
         initialValue,
-        2000,
-        2000 - initialValue,
         uniqueID
       );
 
@@ -448,8 +252,6 @@ export const addToInvestments = function (
       shareTicker,
       numShares,
       initValue,
-      curValue,
-      gainLoss,
       investmentID
       */
         targetShareName,
@@ -457,8 +259,6 @@ export const addToInvestments = function (
         targetShareID,
         inputValue,
         initialValue,
-        2000,
-        2000 - initialValue,
         uniqueID
       );
 
@@ -596,30 +396,12 @@ export const buildTallyObject = function (accountPortfolio) {
         return start + invested;
       });
 
-    const tallyValue = tallyData
-      .map(function (now) {
-        return now.investmentCurValue;
-      })
-      .reduce(function (start, now) {
-        return start + now;
-      });
-
-    const tallyChange = tallyData
-      .map(function (change) {
-        return change.investmentGainLoss;
-      })
-      .reduce(function (start, change) {
-        return start + change;
-      });
-
     // Build an object containing total tallys
     const tallyObject = {
       objectID: tallyID,
       objectAvgSharePrice: averageSharePrice.toFixed(2),
       objectNumShares: tallyNumShares.toFixed(2),
       objectInvested: tallyInvested.toFixed(2),
-      objectValue: tallyValue.toFixed(2),
-      objectChange: tallyChange.toFixed(2),
     };
 
     tallyArray.push(tallyObject);
@@ -686,13 +468,11 @@ export const sellIndividualInvestment = function (ticker, ID) {
 
   // Update the bottom bar statistics data
   account1.fundsAvailable =
-    account1.fundsAvailable + deleteTarget.investmentCurValue;
+    account1.fundsAvailable + deleteTarget.investmentInitValue;
 
   account1.fundsInvested =
     account1.fundsInvested -
     deleteTarget.investmentSharePrice * deleteTarget.totalNumShares;
-
-  //account1.netLossGain = account1.netLossGain - deleteTarget.investmentGainLoss;
 
   // If only one investment exists in the entire share
   if (deleteTargetArr.length === 2) {
@@ -720,17 +500,9 @@ export const getFundsInvested = function () {
   return account1.fundsInvested.toFixed(2);
 };
 
-// Net loss gain data
-export const getNetGainLoss = function () {
-  const accountChangeValue = account1.netLossGain.toFixed(2);
-
-  return accountChangeValue;
-};
-
 // Total account value data
 export const getCurrentValue = function () {
-  const currentValue =
-    account1.fundsAvailable + account1.fundsInvested + account1.netLossGain;
+  const currentValue = account1.fundsAvailable + account1.fundsInvested;
 
   return currentValue.toFixed(2);
 };

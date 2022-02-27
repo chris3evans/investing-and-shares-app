@@ -1,11 +1,11 @@
 .investment-container {
   display: none;
-  grid-column: 1 / 8;
+  grid-column: 1 / 6;
 }
 
 .individual-investment {
   display: grid;
-  grid-template-columns: repeat(6, 1fr) min-content;
+  grid-template-columns: repeat(4, 1fr) min-content;
   align-items: center;
   justify-content: space-between;
   background-color: $color-grey;
@@ -35,16 +35,8 @@
     grid-template-columns: 4 / 5;
   }
 
-  &-value {
-    grid-template-columns: 5 / 6;
-  }
-
-  &-change {
-    grid-template-columns: 6 / 7;
-  }
-
   &-sell {
-    grid-template-columns: 7 / 8;
+    grid-template-columns: 5 / 6;
   }
 
   &-icon {

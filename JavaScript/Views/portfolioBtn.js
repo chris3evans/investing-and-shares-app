@@ -12,7 +12,7 @@ export const renderPortfolioView = function () {
             </div>
 
             <div class="portfolio-headings-price">
-                <h4 class="heading-4 center-text">Avg Price:</h4>
+                <h4 class="heading-4 center-text">Price:</h4>
             </div>
 
             <div class="portfolio-headings-numshares">
@@ -21,14 +21,6 @@ export const renderPortfolioView = function () {
 
             <div class="portfolio-headings-invested">
                 <h4 class="heading-4 center-text">Invested:</h4>
-            </div>
-
-            <div class="portfolio-headings-value">
-                <h4 class="heading-4 center-text">Value:</h4>
-            </div>
-
-            <div class="portfolio-headings-change">
-                <h4 class="heading-4 center-text">Change:</h4>
             </div>
 
             <div class="portfolio-headings-blank">

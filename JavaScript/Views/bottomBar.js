@@ -10,20 +10,6 @@ export const renderFundsInvested = function (investedFunds) {
   return;
 };
 
-export const renderNetGainLoss = function (change) {
-  const netGainLoss = document.querySelector("#net-gain-loss");
-  netGainLoss.textContent = change;
-
-  if (change > 0) {
-    netGainLoss.style.color = "green";
-  }
-  if (change < 0) {
-    netGainLoss.style.color = "red";
-  }
-
-  return;
-};
-
 export const renderCurrentValue = function (currentValue) {
   const curValue = document.querySelector("#current-value");
   curValue.textContent = currentValue;

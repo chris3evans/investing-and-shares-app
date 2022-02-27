@@ -330,9 +330,9 @@ body {
 .investment-group {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[6] min-content;
-      grid-template-columns: repeat(6, 1fr) -webkit-min-content;
-      grid-template-columns: repeat(6, 1fr) min-content;
+  -ms-grid-columns: (1fr)[4] min-content;
+      grid-template-columns: repeat(4, 1fr) -webkit-min-content;
+      grid-template-columns: repeat(4, 1fr) min-content;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -369,19 +369,9 @@ body {
       grid-template-columns: 4 / 5;
 }
 
-.investment-group-value {
+.investment-group-button {
   -ms-grid-columns: 5 / 6;
       grid-template-columns: 5 / 6;
-}
-
-.investment-group-change {
-  -ms-grid-columns: 6 / 7;
-      grid-template-columns: 6 / 7;
-}
-
-.investment-group-button {
-  -ms-grid-columns: 7 / 8;
-      grid-template-columns: 7 / 8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -419,16 +409,16 @@ body {
 .investment-container {
   display: none;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 7;
-  grid-column: 1 / 8;
+  -ms-grid-column-span: 5;
+  grid-column: 1 / 6;
 }
 
 .individual-investment {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[6] min-content;
-      grid-template-columns: repeat(6, 1fr) -webkit-min-content;
-      grid-template-columns: repeat(6, 1fr) min-content;
+  -ms-grid-columns: (1fr)[4] min-content;
+      grid-template-columns: repeat(4, 1fr) -webkit-min-content;
+      grid-template-columns: repeat(4, 1fr) min-content;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -468,19 +458,9 @@ body {
       grid-template-columns: 4 / 5;
 }
 
-.individual-investment-value {
+.individual-investment-sell {
   -ms-grid-columns: 5 / 6;
       grid-template-columns: 5 / 6;
-}
-
-.individual-investment-change {
-  -ms-grid-columns: 6 / 7;
-      grid-template-columns: 6 / 7;
-}
-
-.individual-investment-sell {
-  -ms-grid-columns: 7 / 8;
-      grid-template-columns: 7 / 8;
 }
 
 .individual-investment-icon {
@@ -552,9 +532,9 @@ body {
 .portfolio-headings {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[6] min-content;
-      grid-template-columns: repeat(6, 1fr) -webkit-min-content;
-      grid-template-columns: repeat(6, 1fr) min-content;
+  -ms-grid-columns: (1fr)[4] min-content;
+      grid-template-columns: repeat(4, 1fr) -webkit-min-content;
+      grid-template-columns: repeat(4, 1fr) min-content;
   padding: 1rem 0rem;
   border-bottom: 0.1rem solid rgba(5, 5, 83, 0.6);
   margin-bottom: 2rem;
@@ -578,16 +558,6 @@ body {
 .portfolio-headings-invested {
   -ms-grid-columns: 4 / 5;
       grid-template-columns: 4 / 5;
-}
-
-.portfolio-headings-value {
-  -ms-grid-columns: 5 / 6;
-      grid-template-columns: 5 / 6;
-}
-
-.portfolio-headings-change {
-  -ms-grid-columns: 6 / 7;
-      grid-template-columns: 6 / 7;
 }
 
 .portfolio-headings-blank {

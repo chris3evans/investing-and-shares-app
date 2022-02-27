@@ -23,14 +23,6 @@ export const renderGroupInvestment = function (groupInvestmentsArray) {
                 <p class="main-text center-text">$${groupInvestment.objectInvested}</p>
             </div>
 
-            <div class="investment-group-value">
-                <p class="main-text center-text">$${groupInvestment.objectValue}</p>
-            </div>
-
-            <div class="investment-group-change">
-                <p class="main-text center-text">$${groupInvestment.objectChange}</p>
-            </div>
-
             <div class="investment-group-button">
                 <svg class="investment-group-icon   chevron-down">
                     <use xlink:href="CSS/chevrons.svg#icon-chevron-small-down">

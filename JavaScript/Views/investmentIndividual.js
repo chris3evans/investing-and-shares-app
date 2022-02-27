@@ -62,18 +62,6 @@ export const renderIndividualInvestments = function (
               $${investment.investmentInitValue.toFixed(2)}
             </p>
           </div>
-          
-          <div class="individual-investment-value">         
-            <p class="main-text center-text">
-              $${investment.investmentCurValue.toFixed(2)}
-            </p>
-          </div> 
-          
-          <div class="individual-investment-change">      
-            <p class="main-text center-text">
-              $${investment.investmentGainLoss.toFixed(2)}
-            </p>
-          </div>
 
           <div class="individual-investment-sell">
             <svg class="individual-investment-icon">

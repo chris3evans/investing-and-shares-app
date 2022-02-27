@@ -27,14 +27,10 @@ const portfolioBtn = document.querySelector("#btnPortfolio");
 // RENDER INITIAL SHARES CODE
 //
 
-/*const modelStockData = await modelObject.getStockData();
-console.log(modelStockData);
+const tickerString = modelObject.APIString;
 
-console.log(modelObject);
+const mockData = await modelObject.getStockData(tickerString);
 
-mainViewObject.renderStockList(modelStockData);*/
-
-const mockData = modelObject.testData;
 mainViewObject.renderStockList(mockData);
 
 // BOTTOM BAR STATISTICS LOGIC
@@ -46,9 +42,6 @@ const updateBottomBar = function () {
 
   // Update funds invested
   viewBottomBar.renderFundsInvested(modelObject.getFundsInvested());
-
-  // Update net gain loss
-  viewBottomBar.renderNetGainLoss(modelObject.getNetGainLoss());
 
   // Update account's current value;
   viewBottomBar.renderCurrentValue(modelObject.getCurrentValue());
@@ -248,12 +241,6 @@ const purchaseShares = function () {
           inputValue
         );
 
-        // If there is not enough:
-        /*if (addition === "error") {
-          // Turn error text red for more emphasis
-          viewBuyPopUp.renderMainPurchaseError();
-        }*/
-        console.log(modelObject.account1);
         // Close the pop up window
         closeViewMorePopUp();
 
@@ -294,7 +281,6 @@ withdrawBtn.addEventListener("click", function () {
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("withdraw-btn")) {
     const withdrawInput = document.querySelector(".withdraw-input").value;
-    console.log(withdrawInput);
 
     let withdrawResult = modelObject.withdrawAccount(withdrawInput);
 
@@ -370,7 +356,6 @@ document.addEventListener("click", function (e) {
     }
   }
 });
-console.log(modelObject.account1);
 // View account button
 viewAccountBtn.addEventListener("click", function () {
   // Reveal navigation for viewing account history
@@ -515,8 +500,6 @@ document.addEventListener("click", function (e) {
     // Clear the pop ups content
     viewMorePopUp.showViewMore();
 
-    // Render the sell pop up UI
-
     // Stock ticker - locate correct group investment
     targetInvestmentTicker = Array.from(
       e.target.closest(".individual-investment").classList
@@ -525,17 +508,8 @@ document.addEventListener("click", function (e) {
     // ID of clicked investment - locate correct individual investment
     targetInvestmentID = +e.target.closest(".individual-investment").id;
 
-    // Use ticker and ID to find the correct data in the account's portfolio
-    const targetInvestmentData = modelObject.account1.portfolio
-      .find(function (groupInvestment) {
-        return groupInvestment[0] === targetInvestmentTicker;
-      })
-      .slice(1)
-      .find(function (individualInvestment) {
-        return individualInvestment.investmentID === targetInvestmentID;
-      });
-
-    viewSellPopUp.renderSellPopUp(targetInvestmentData);
+    // Render sell popup
+    viewSellPopUp.renderSellPopUp();
   }
 });
 
@@ -547,7 +521,6 @@ document.addEventListener("click", function (e) {
       targetInvestmentTicker,
       targetInvestmentID
     );
-    console.log(renderResult);
 
     // If it is the only existing investment
     if (renderResult === "single") {
@@ -557,8 +530,13 @@ document.addEventListener("click", function (e) {
       // Render portfolio headings
       viewPortfolio.renderPortfolioView();
 
+      // Tally up all individual data to render on group investment cards
+      tallyObjectArr = modelObject.buildTallyObject(
+        modelObject.account1.portfolio
+      );
+
       // Render group investment cards in portfolio view from account data
-      //viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
+      viewInvestmentGroup.renderGroupInvestment(tallyObjectArr);
     }
 
     // If there are other existing investments
