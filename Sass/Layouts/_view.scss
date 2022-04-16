@@ -11,5 +11,9 @@
     width: 80%;
     padding: 1rem;
     overflow-y: scroll;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
   }
 }

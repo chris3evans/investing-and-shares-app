@@ -24,6 +24,7 @@ export const renderStockPopUp = function (targetShareID, sharesArray) {
   const targetStock = sharesArray.find(function (share) {
     return share.ticker === targetShareID;
   });
+  console.log(targetStock);
   // Rendering that stock's object in the popup window
 
   const marketCap = function (marketCap) {
@@ -51,54 +52,49 @@ export const renderStockPopUp = function (targetShareID, sharesArray) {
     </div>
 
     <div class="details-info details-name">
-      <p class="main-text">Name:</p>
-      <p class="main-text" id="stockName">${targetStock.name}</p>
+      <p class="main-text">Name: </p>
+      <p class="main-text" id="stockName">&#8194;${targetStock.name}</p>
     </div>
 
     <div class="details-info details-ticker">
-      <p class="main-text">Ticker:</p>
-      <p class="main-text" id="tickerSymbol">${targetStock.ticker}</p>
+      <p class="main-text">Ticker: </p>
+      <p class="main-text" id="tickerSymbol">&#8194;${targetStock.ticker}</p>
     </div>
 
     <div class="details-info details-price">
-      <p class="main-text">Share Price:</p>
-      <p class="main-text" id="sharePrice">$${targetStock.price}</p>
+      <p class="main-text">Share Price: </p>
+      <p class="main-text" id="sharePrice">&#8194;$${targetStock.price.toFixed(
+        2
+      )}</p>
     </div>
 
     <div class="details-info details-day-low">
-      <p class="main-text">Day Low:</p>
-      <p class="main-text" id="dayLow">$${targetStock.day_low}</p>
+      <p class="main-text">Day Low: </p>
+      <p class="main-text" id="dayLow">&#8194;$${targetStock.day_low.toFixed(
+        2
+      )}</p>
     </div>
 
     <div class="details-info details-day-high">
-      <p class="main-text">Day High:</p>
-      <p class="main-text" id="dayHigh">$${targetStock.day_high}
+      <p class="main-text">Day High: </p>
+      <p class="main-text" id="dayHigh">&#8194;$${targetStock.day_high.toFixed(
+        2
+      )}
       </p>
     </div>
 
     <div class="details-info details-market">
-      <p class="main-text">Market:</p>
-      <p class="main-text" id="market">${targetStock.exchange_short}
+      <p class="main-text">Market: </p>
+      <p class="main-text" id="market">&#8194;${targetStock.exchange_short}
       </p>
     </div>
 
     <div class="details-info details-marketcap">
-      <p class="main-text">Market Cap:</p>
-      <p class="main-text" id="marketCap">${marketCap(
-        targetStock.market_cap
+      <p class="main-text">Market Cap: </p>
+      <p class="main-text" id="marketCap">&#8194;${marketCap(
+        targetStock.market_cap.toFixed(2)
       )}</p>
     </div>
-
-    <div class="details-info details-52low">
-      <p class="main-text">52 Week-Low:</p>
-      <p class="main-text" id="yearLow">$116.22</p>
-    </div>
-
-    <div class="details-info details-52high">
-      <p class="main-text">52 Week-High:</p>
-      <p class="main-text" id="yearHigh">$182.71</p>
-    </div>
-  </div>
 
   <div class="details-btn btn-buy" id="btn-buy">
           <button class="btn btn-dark btn-buy-text" id="btn-buy-text">Buy shares</button>

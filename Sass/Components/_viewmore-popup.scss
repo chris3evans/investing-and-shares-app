@@ -2,9 +2,10 @@
   display: grid;
   grid-template-rows: repeat(3, min-content);
   width: 50%;
-  margin-top: 2.5%;
+  margin-top: 20%;
   margin-left: 25%;
   position: absolute;
+  grid-template-columns: 1fr;
 
   background-color: $color-very-light-blue;
   border-radius: 1rem;
@@ -12,6 +13,17 @@
 
   z-index: 5;
   transition: all 0.4s;
+
+  @include respond(tab-port) {
+    margin-top: 15%;
+    width: 65%;
+    margin-left: 17.5%;
+  }
+  @include respond(phone-big) {
+    width: 85%;
+    margin-top: 20%;
+    margin-left: 7.5%;
+  }
 
   &-navigation {
     display: flex;
@@ -45,79 +57,157 @@
 
   &-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(7, max-content);
     grid-gap: 3rem;
     padding: 0rem 2rem;
+
+    @include respond(tab-land) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(7, max-content);
+      grid-gap: 1.5rem;
+      justify-items: center;
+    }
+
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(11, min-content);
+    }
   }
 
   &-logo {
-    grid-column: 1 / 3;
+    grid-column: 1 / 2;
     grid-row: 1 / 4;
+    justify-self: center;
 
-    align-content: center;
+    @include respond(tab-land) {
+      grid-row: 1 / 4;
+      grid-column: 1 / 3;
+    }
+    @include respond(tab-port) {
+      grid-column: 1 / 2;
+    }
 
     &-file {
-      width: 100%;
-
       border-radius: 0.5rem;
       box-shadow: 0rem 0.5rem 2rem rgba(black, 0.3);
+
+      @include respond(tab-port) {
+        width: 100%;
+      }
     }
   }
 
   &-info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    padding-left: 5rem;
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0rem 0.3rem 1rem rgba(black, 0.2);
+    display: flex;
+    padding: 1rem 0rem 1rem 5rem;
+
+    @include respond(tab-land) {
+      width: 80%;
+      padding: 1rem;
+    }
   }
 
   &-name {
-    grid-column: 3 / 5;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
+
+    @include respond(tab-land) {
+      grid-row: 4 / 5;
+      grid-column: 1 / 3;
+    }
+    @include respond(tab-port) {
+      grid-row: 4 / 5;
+      grid-column: 1 / 2;
+    }
   }
 
   &-ticker {
-    grid-column: 3 / 5;
+    grid-column: 2 / 3;
     grid-row: 2 / 3;
+
+    @include respond(tab-land) {
+      grid-row: 5 / 6;
+      grid-column: 1 / 2;
+    }
+    @include respond(tab-port) {
+      grid-row: 5 / 6;
+      grid-column: 1 / 2;
+    }
   }
 
   &-price {
-    grid-column: 3 / 5;
+    grid-column: 2 / 3;
     grid-row: 3 / 4;
+
+    @include respond(tab-land) {
+      grid-row: 5 / 6;
+      grid-column: 2 / 3;
+    }
+    @include respond(tab-port) {
+      grid-row: 6 / 7;
+      grid-column: 1 / 2;
+    }
   }
 
   &-market {
-    grid-column: 1 / 3;
+    grid-column: 1 / 2;
     grid-row: 4 / 5;
+
+    @include respond(tab-land) {
+      grid-row: 6 / 7;
+      grid-column: 1 / 2;
+    }
+    @include respond(tab-port) {
+      grid-row: 7 / 8;
+      grid-column: 1 / 2;
+    }
   }
 
   &-marketcap {
-    grid-column: 3 / 5;
+    grid-column: 2 / 3;
     grid-row: 4 / 5;
+
+    @include respond(tab-land) {
+      grid-row: 6 / 7;
+      grid-column: 2 / 3;
+    }
+    @include respond(tab-port) {
+      grid-row: 8 / 9;
+      grid-column: 1 / 2;
+    }
   }
 
   &-day-low {
-    grid-column: 1 / 3;
+    grid-column: 1 / 2;
     grid-row: 5 / 6;
+
+    @include respond(tab-land) {
+      grid-row: 7 / 8;
+      grid-column: 1 / 2;
+    }
+    @include respond(tab-port) {
+      grid-row: 9 / 10;
+      grid-column: 1 / 2;
+    }
   }
 
   &-day-high {
-    grid-column: 3 / 5;
+    grid-column: 2 / 3;
     grid-row: 5 / 6;
-  }
 
-  &-52low {
-    grid-column: 1 / 3;
-    grid-row: 6 / 7;
-  }
-
-  &-52high {
-    grid-column: 3 / 5;
-    grid-row: 6 / 7;
+    @include respond(tab-land) {
+      grid-row: 7 / 8;
+      grid-column: 2 / 3;
+    }
+    @include respond(tab-port) {
+      grid-row: 10 / 11;
+      grid-column: 1 / 2;
+    }
   }
 }
 
@@ -125,4 +215,16 @@
   display: flex;
   justify-content: center;
   padding: 2rem 0rem;
+  grid-row: 6 / 7;
+  grid-column: 1 / 3;
+  justify-self: center;
+
+  @include respond(tab-land) {
+    grid-row: 8 / 9;
+    grid-column: 1 / 3;
+  }
+  @include respond(tab-port) {
+    grid-row: 11 / 12;
+    grid-column: 1 / 2;
+  }
 }

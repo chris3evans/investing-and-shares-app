@@ -10,12 +10,6 @@ export const renderPurchasePopUp = function (stockID, stockArray) {
   const purchaseHtml = `
         <div class="buy-container">
           <div class="buy-selector">
-            <div class="buy-units unit-selected">
-              <p class="main-text cursor-pointer center-text unit">Units</p>
-            </div>
-            <div class="buy-funds">
-              <p class="main-text cursor-pointer center-text fund">Funds</p>
-            </div>
 
             <div class="buy-amount">
               <button class="square-btn" id="buy-less">-</button>
@@ -31,7 +25,7 @@ export const renderPurchasePopUp = function (stockID, stockArray) {
 
         <div class="details-btn btn-purchase" id="btn-purchase">
           <button class="btn btn-dark btn-purchase-text" id="btn-buy-text">Purchase</button>
-        </div>
+        </div>  
     `;
 
   backBtn.classList.remove("hidden");
@@ -55,7 +49,9 @@ export const renderPurchaseSummary = function (quantity, stock, amount) {
     purchaseSummary.textContent = "";
   }
 
-  purchaseSummary.textContent = `Buy ${quantity} ${stock} for $${amount}`;
+  purchaseSummary.textContent = `Buy ${quantity} ${stock} for $${amount.toFixed(
+    2
+  )}`;
 };
 
 export const renderPurchaseError = function (totalAmount, accountAmount) {

@@ -451,6 +451,7 @@ export const sellIndividualInvestment = function (ticker, ID) {
     .find(function (individualInvestment) {
       return individualInvestment.investmentID === ID;
     });
+  console.log(deleteTarget);
 
   // Index number of array element to be removed
   const deleteTargetIndex = deleteTargetArr.indexOf(deleteTarget);
@@ -462,7 +463,9 @@ export const sellIndividualInvestment = function (ticker, ID) {
     date: curDate,
     name: deleteTarget.investmentTicker,
     type: "Sale",
-    value: deleteTarget.investmentSharePrice,
+    value: (
+      deleteTarget.investmentSharePrice * deleteTarget.totalNumShares
+    ).toFixed(2),
     shares: deleteTarget.totalNumShares,
   });
 
